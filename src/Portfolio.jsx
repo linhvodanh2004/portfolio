@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import avatar from "./assets/linhphung_avatar.png";
 
 // ─── TRANSLATIONS ─────────────────────────────────────────────────────────────
 const t = {
@@ -6,7 +7,7 @@ const t = {
     nav: { home: "Trang chủ", about: "Về tôi", skills: "Kỹ năng", experience: "Kinh nghiệm", projects: "Dự án", services: "Dịch vụ", blog: "Blog", contact: "Liên hệ" },
     hero: {
       greeting: "Xin chào, tôi là",
-      name: "Nguyễn Dev",
+      name: "Linh Phùng",
       titles: ["Full-Stack Developer", "UI/UX Enthusiast", "Open Source Contributor", "Problem Solver"],
       desc: "Tôi xây dựng những trải nghiệm kỹ thuật số đẹp, hiệu suất cao và dễ truy cập. Đam mê tạo ra những sản phẩm có tác động thực sự.",
       cta1: "Xem dự án",
@@ -15,10 +16,10 @@ const t = {
       scroll: "Cuộn xuống",
     },
     stats: [
-      { label: "Năm kinh nghiệm", value: "5+" },
-      { label: "Dự án hoàn thành", value: "80+" },
+      { label: "Năm kinh nghiệm", value: "< 1" },
+      { label: "Dự án hoàn thành", value: "10+" },
       { label: "Khách hàng hài lòng", value: "40+" },
-      { label: "Đóng góp GitHub", value: "1.2K" },
+      { label: "Đóng góp GitHub", value: "1000+" },
     ],
     about: {
       title: "Về tôi",
@@ -79,7 +80,7 @@ const t = {
     nav: { home: "Home", about: "About", skills: "Skills", experience: "Experience", projects: "Projects", services: "Services", blog: "Blog", contact: "Contact" },
     hero: {
       greeting: "Hi, I'm",
-      name: "Nguyen Dev",
+      name: "Linh Phung",
       titles: ["Full-Stack Developer", "UI/UX Enthusiast", "Open Source Contributor", "Problem Solver"],
       desc: "I build beautiful, high-performance, and accessible digital experiences. Passionate about creating products that make a real impact.",
       cta1: "View Projects",
@@ -88,10 +89,10 @@ const t = {
       scroll: "Scroll down",
     },
     stats: [
-      { label: "Years Experience", value: "5+" },
-      { label: "Projects Completed", value: "80+" },
+      { label: "Years Experience", value: "< 1" },
+      { label: "Projects Completed", value: "10+" },
       { label: "Happy Clients", value: "40+" },
-      { label: "GitHub Contributions", value: "1.2K" },
+      { label: "GitHub Contributions", value: "1000+" },
     ],
     about: {
       title: "About Me",
@@ -406,7 +407,7 @@ function Navbar({ lang, setLang, tr }) {
       <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: "70px" }}>
         {/* Logo */}
         <button onClick={() => scrollTo("home")} style={{ fontFamily: "'Syne', sans-serif", fontWeight: 900, fontSize: "1.5rem", background: "linear-gradient(135deg, #a78bfa, #ec4899)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", letterSpacing: "-0.02em" }}>
-          &lt;ND /&gt;
+          &lt;LinhPN /&gt;
         </button>
 
         {/* Desktop Nav */}
@@ -421,9 +422,33 @@ function Navbar({ lang, setLang, tr }) {
 
         {/* Lang Toggle + Menu */}
         <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-          <button onClick={() => setLang(lang === "vi" ? "en" : "vi")}
-            style={{ background: "rgba(167,139,250,0.15)", border: "1px solid rgba(167,139,250,0.3)", color: "#a78bfa", borderRadius: "20px", padding: "0.3rem 0.8rem", fontSize: "0.8rem", fontWeight: 700, cursor: "pointer", transition: "all 0.2s" }}>
-            {lang === "vi" ? "🇻🇳 VI" : "🇺🇸 EN"}
+          <button
+            onClick={() => setLang(lang === "vi" ? "en" : "vi")}
+            style={{
+              background: "rgba(167,139,250,0.15)",
+              border: "1px solid rgba(167,139,250,0.3)",
+              color: "#a78bfa",
+              borderRadius: "20px",
+              padding: "0.3rem 0.8rem",
+              fontSize: "0.8rem",
+              fontWeight: 700,
+              cursor: "pointer",
+              transition: "all 0.2s",
+              display: "flex",
+              alignItems: "center",
+              gap: "6px"
+            }}
+          >
+            <img
+              src={
+                lang === "vi"
+                  ? "https://flagcdn.com/w20/vn.png"
+                  : "https://flagcdn.com/w20/us.png"
+              }
+              alt="flag"
+              style={{ width: "18px", height: "14px", borderRadius: "2px" }}
+            />
+            {lang === "vi" ? "VI" : "EN"}
           </button>
           <button onClick={() => setMenuOpen(!menuOpen)} className="show-mobile"
             style={{ background: "none", border: "none", color: "white", fontSize: "1.5rem", cursor: "pointer" }}>
@@ -477,7 +502,21 @@ function Hero({ lang, tr }) {
             {tr.hero.greeting}
           </p>
 
-          <h1 style={{ fontFamily: "'Syne', sans-serif", fontSize: "clamp(2.5rem, 6vw, 4.5rem)", fontWeight: 900, lineHeight: 1.05, marginBottom: "0.75rem", opacity: mounted ? 1 : 0, transition: "all 0.6s ease 0.3s", transform: mounted ? "translateY(0)" : "translateY(20px)", background: "linear-gradient(135deg, #fff 30%, rgba(255,255,255,0.6))", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+          <h1
+            style={{
+              fontFamily: "'Be Vietnam Pro', sans-serif",
+              fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
+              fontWeight: 900,
+              lineHeight: 1.2, // tăng lên
+              marginBottom: "0.75rem",
+              opacity: mounted ? 1 : 0,
+              transition: "all 0.6s ease 0.3s",
+              transform: mounted ? "translateY(0)" : "translateY(20px)",
+              background: "linear-gradient(135deg, #fff 30%, rgba(255,255,255,0.6))",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent"
+            }}
+          >
             {tr.hero.name}
           </h1>
 
@@ -527,15 +566,49 @@ function Hero({ lang, tr }) {
             <div style={{ position: "absolute", inset: "-40px", borderRadius: "50%", border: "1px dashed rgba(236,72,153,0.2)", animation: "spin 30s linear infinite reverse" }} />
             {/* Avatar */}
             <div style={{ width: "280px", height: "280px", borderRadius: "50%", overflow: "hidden", border: "3px solid rgba(167,139,250,0.4)", boxShadow: "0 0 60px rgba(124,58,237,0.3)", position: "relative" }}>
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" alt="avatar" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              <img src={avatar} alt="avatar" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
               <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(124,58,237,0.1), rgba(236,72,153,0.1))" }} />
             </div>
             {/* Floating badges */}
             <div style={{ position: "absolute", top: "-10px", right: "-20px", background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.3)", borderRadius: "12px", padding: "0.5rem 0.75rem", backdropFilter: "blur(10px)", animation: "float 3s ease-in-out infinite" }}>
-              <div style={{ color: "#10b981", fontWeight: 700, fontSize: "0.8rem" }}>⚡ 5+ Years</div>
+              <div style={{ color: "#10b981", fontWeight: 700, fontSize: "0.8rem" }}>Spring Boot</div>
             </div>
             <div style={{ position: "absolute", bottom: "10px", left: "-30px", background: "rgba(167,139,250,0.15)", border: "1px solid rgba(167,139,250,0.3)", borderRadius: "12px", padding: "0.5rem 0.75rem", backdropFilter: "blur(10px)", animation: "float 3s ease-in-out infinite 1.5s" }}>
-              <div style={{ color: "#a78bfa", fontWeight: 700, fontSize: "0.8rem" }}>🏆 80+ Projects</div>
+              <div style={{ color: "#a78bfa", fontWeight: 700, fontSize: "0.8rem" }}>.Net</div>
+            </div>
+            <div
+              style={{
+                position: "absolute",
+                top: "40%",
+                left: "-60px",
+                background: "rgba(59,130,246,0.15)",
+                border: "1px solid rgba(59,130,246,0.4)",
+                borderRadius: "12px",
+                padding: "0.5rem 0.75rem",
+                backdropFilter: "blur(10px)",
+                animation: "float 3s ease-in-out infinite 0.8s"
+              }}
+            >
+              <div style={{ color: "#3b82f6", fontWeight: 700, fontSize: "0.8rem" }}>
+                ReactJS
+              </div>
+            </div>
+            <div
+              style={{
+                position: "absolute",
+                top: "60%",
+                right: "-60px",
+                background: "rgba(239,68,68,0.15)",
+                border: "1px solid rgba(239,68,68,0.4)",
+                borderRadius: "12px",
+                padding: "0.5rem 0.75rem",
+                backdropFilter: "blur(10px)",
+                animation: "float 3s ease-in-out infinite 2s"
+              }}
+            >
+              <div style={{ color: "#ef4444", fontWeight: 700, fontSize: "0.8rem" }}>
+                SQL
+              </div>
             </div>
           </div>
         </div>
@@ -558,7 +631,7 @@ function Stats({ tr }) {
         {tr.stats.map((s, i) => (
           <AnimatedSection key={i} delay={i * 0.1}>
             <div style={{ textAlign: "center" }}>
-              <div style={{ fontFamily: "'Syne', sans-serif", fontSize: "2.5rem", fontWeight: 900, background: "linear-gradient(135deg, #a78bfa, #ec4899)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>{s.value}</div>
+              <div style={{ fontSize: "2.5rem", fontWeight: 900, background: "linear-gradient(135deg, #a78bfa, #ec4899)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>{s.value}</div>
               <div style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.85rem", marginTop: "0.25rem" }}>{s.label}</div>
             </div>
           </AnimatedSection>
@@ -1037,7 +1110,7 @@ function Contact({ lang, tr }) {
 function Footer({ lang, tr }) {
   return (
     <footer style={{ padding: "3rem 2rem", borderTop: "1px solid rgba(255,255,255,0.06)", textAlign: "center" }}>
-      <div style={{ fontFamily: "'Syne', sans-serif", fontWeight: 900, fontSize: "1.5rem", background: "linear-gradient(135deg, #a78bfa, #ec4899)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", marginBottom: "1rem" }}>&lt;ND /&gt;</div>
+      <div style={{ fontFamily: "'Syne', sans-serif", fontWeight: 900, fontSize: "1.5rem", background: "linear-gradient(135deg, #a78bfa, #ec4899)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", marginBottom: "1rem" }}>&lt;LinhPN /&gt;</div>
       <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.85rem", marginBottom: "0.5rem" }}>{tr.footer.built}</p>
       <p style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.8rem" }}>© 2024 Nguyen Dev. {tr.footer.rights}.</p>
     </footer>
