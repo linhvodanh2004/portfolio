@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import logo from './assets/linhphung_avatar.png'
-import './App.css'
 import Portfolio from './Portfolio'
 
 function App() {
