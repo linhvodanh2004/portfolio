@@ -1,5 +1,10 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import avatar from "./assets/linhphung_avatar.png";
+import chatGptLogo from "./assets/ai-logo/chatgpt-seeklogo.png";
+import claudeLogo from "./assets/ai-logo/claude-seeklogo.png";
+import geminiLogo from "./assets/ai-logo/google-gemini-icon-seeklogo.png";
+import grokLogo from "./assets/ai-logo/grok-seeklogo.png";
+import StackIcon from "tech-stack-icons";
 
 // ─── TRANSLATIONS ─────────────────────────────────────────────────────────────
 const t = {
@@ -153,76 +158,62 @@ const t = {
 
 // ─── DATA ─────────────────────────────────────────────────────────────────────
 const skillsData = [
-  { name: "React", level: 95, cat: "Frontend", icon: "⚛️", color: "#61DAFB" },
-  { name: "Next.js", level: 90, cat: "Frontend", icon: "▲", color: "#fff" },
-  { name: "TypeScript", level: 88, cat: "Frontend", icon: "TS", color: "#3178C6" },
-  { name: "Vue.js", level: 80, cat: "Frontend", icon: "💚", color: "#42B883" },
-  { name: "Tailwind CSS", level: 92, cat: "Frontend", icon: "🎨", color: "#06B6D4" },
-  { name: "Three.js", level: 65, cat: "Frontend", icon: "🎲", color: "#fff" },
-  { name: "Node.js", level: 88, cat: "Backend", icon: "🟢", color: "#339933" },
-  { name: "Express", level: 85, cat: "Backend", icon: "🚂", color: "#fff" },
-  { name: "NestJS", level: 78, cat: "Backend", icon: "🐱", color: "#E0234E" },
-  { name: "GraphQL", level: 75, cat: "Backend", icon: "◈", color: "#E535AB" },
-  { name: "Python", level: 70, cat: "Backend", icon: "🐍", color: "#3776AB" },
-  { name: "Go", level: 60, cat: "Backend", icon: "🐹", color: "#00ADD8" },
-  { name: "Docker", level: 82, cat: "DevOps", icon: "🐳", color: "#2496ED" },
-  { name: "Kubernetes", level: 65, cat: "DevOps", icon: "☸️", color: "#326CE5" },
-  { name: "AWS", level: 72, cat: "DevOps", icon: "☁️", color: "#FF9900" },
-  { name: "CI/CD", level: 78, cat: "DevOps", icon: "🔄", color: "#FC6D26" },
-  { name: "React Native", level: 75, cat: "Mobile", icon: "📱", color: "#61DAFB" },
-  { name: "Flutter", level: 60, cat: "Mobile", icon: "💙", color: "#54C5F8" },
-  { name: "PostgreSQL", level: 85, cat: "Database", icon: "🐘", color: "#336791" },
-  { name: "MongoDB", level: 80, cat: "Database", icon: "🍃", color: "#47A248" },
-  { name: "Redis", level: 72, cat: "Database", icon: "🔴", color: "#DC382D" },
-  { name: "Prisma", level: 80, cat: "Database", icon: "◆", color: "#2D3748" },
+  // Frontend
+  { name: "Bootstrap", level: 80, cat: "Frontend", icon: "bootstrap5" },
+  { name: "Tailwind CSS", level: 80, cat: "Frontend", icon: "tailwindcss" },
+  { name: "HTML", level: 77, cat: "Frontend", icon: "html5" },
+  { name: "CSS", level: 77, cat: "Frontend", icon: "css3" },
+  { name: "ReactJS", level: 70, cat: "Frontend", icon: "react" },
+  { name: "Vite", level: 70, cat: "Frontend", icon: "vitejs" },
+  { name: "Typescript", level: 70, cat: "Frontend", icon: "typescript" },
+  { name: "JavaScript", level: 70, cat: "Frontend", icon: "js" },
+  { name: "Angular", level: 70, cat: "Frontend", icon: "angular17" },
+  // Backend
+  { name: "Thymeleaf", level: 80, cat: "Backend", icon: "thymeleaf" },
+  { name: "Swagger", level: 80, cat: "Backend", icon: "swagger" },
+  { name: "Spring Boot", level: 80, cat: "Backend", icon: "spring" },
+  { name: ".NET", level: 80, cat: "Backend", icon: "netcore" },
+  { name: "Node.js", level: 70, cat: "Backend", icon: "nodejs" },
+  { name: "NestJS", level: 70, cat: "Backend", icon: "nestjs" },
+  // DevOps
+  { name: "Vercel", level: 75, cat: "DevOps", icon: "vercel" },
+  { name: "Render", level: 75, cat: "DevOps", icon: "render" },
+  { name: "Railway", level: 75, cat: "DevOps", icon: "railway" },
+  { name: "Git", level: 70, cat: "DevOps", icon: "git" },
+  { name: "Gitlab", level: 70, cat: "DevOps", icon: "gitlab" },
+  { name: "Jira", level: 65, cat: "DevOps", icon: "jira" },
+  { name: "SonarQube", level: 55, cat: "DevOps", icon: "sonarqube" },
+  { name: "Kubernetes", level: 10, cat: "DevOps", icon: "kubernetes" },
+  { name: "Docker", level: 36, cat: "DevOps", icon: "docker" },
+  // Mobile
+  { name: "Flutter", level: 65, cat: "Mobile", icon: "flutter" },
+  { name: "Dart", level: 60, cat: "Mobile", icon: "dart" },
+  // Database
+  { name: "Firebase", level: 55, cat: "Database", icon: "firebase" },
+  { name: "PostgreSQL", level: 70, cat: "Database", icon: "postgresql" },
+  { name: "MySQL", level: 75, cat: "Database", icon: "mysql" },
+  { name: "Prisma", level: 70, cat: "Database", icon: "prisma" },
 ];
-
 const workExp = [
   {
-    role: { vi: "Senior Full-Stack Developer", en: "Senior Full-Stack Developer" },
-    company: "TechCorp Vietnam",
-    period: "2022 - Hiện tại",
+    role: { vi: "Thực Tập Sinh Java", en: "Java Intern" },
+    company: "FPT Software Academy",
+    period: "05/2025 - 08/2025",
     location: "Hà Nội",
     desc: { vi: "Dẫn dắt team 5 người xây dựng nền tảng SaaS phục vụ hơn 100K người dùng. Tối ưu performance giảm 40% load time.", en: "Led a 5-person team building a SaaS platform serving 100K+ users. Optimized performance reducing load time by 40%." },
-    tags: ["React", "Node.js", "PostgreSQL", "AWS"],
-    logo: "https://ui-avatars.com/api/?name=TC&background=6366f1&color=fff&size=48",
-  },
-  {
-    role: { vi: "Full-Stack Developer", en: "Full-Stack Developer" },
-    company: "StartupXYZ",
-    period: "2020 - 2022",
-    location: "TP. Hồ Chí Minh",
-    desc: { vi: "Xây dựng từ đầu MVP của startup fintech, tích hợp thanh toán, KYC và real-time dashboard.", en: "Built fintech startup MVP from scratch, integrating payments, KYC and real-time dashboards." },
-    tags: ["Next.js", "NestJS", "MongoDB", "Docker"],
-    logo: "https://ui-avatars.com/api/?name=SX&background=ec4899&color=fff&size=48",
-  },
-  {
-    role: { vi: "Frontend Developer", en: "Frontend Developer" },
-    company: "Agency Digital",
-    period: "2019 - 2020",
-    location: "Hà Nội",
-    desc: { vi: "Phát triển giao diện cho 20+ dự án khách hàng lớn trong ngành e-commerce và media.", en: "Developed interfaces for 20+ large client projects in e-commerce and media industries." },
-    tags: ["React", "Vue.js", "WordPress", "Sass"],
-    logo: "https://ui-avatars.com/api/?name=AD&background=f59e0b&color=fff&size=48",
+    tags: ["Thmeleaf", "Spring Boot", "MySQL", "AI Studio", "Jira", "Git", "Gitlab", "HTML/CSS/Javascript"],
+    logo: "https://scontent.fhan2-4.fna.fbcdn.net/v/t39.30808-6/479494601_614420181340319_3909045382237007252_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=KCi5cVYRWGwQ7kNvwE5BnqH&_nc_oc=AdnPUI-LkFzjAg2KzzLNd7w9dk7FQPyd-Nwxrgk0I3-il3LZxZmXMTDPwSVVtSomXtENfVJjYwgkmsfNrPlQYI3T&_nc_zt=23&_nc_ht=scontent.fhan2-4.fna&_nc_gid=IM0kOi73nHedqzOEqv6Ucw&_nc_ss=8&oh=00_Afz4oJTV4QrV4AYV7bkrS9VoCKcAUknmZYYaahZzZBWvCw&oe=69AD04F4",
   },
 ];
 
 const education = [
   {
-    degree: { vi: "Cử nhân Khoa học Máy tính", en: "B.S. Computer Science" },
-    school: "Đại học Bách Khoa Hà Nội",
-    period: "2016 - 2020",
-    gpa: "3.6/4.0",
+    degree: { vi: "Cử nhân Kỹ Thuật Phần Mềm", en: "Bachelor of Software Engineering" },
+    school: "Đại học FPT Hà Nội",
+    period: "2022 - 2026",
+    gpa: "3.0/4.0",
     desc: { vi: "Chuyên ngành Kỹ thuật phần mềm. Tốt nghiệp xuất sắc. Đồ án tốt nghiệp về AI-powered recommendation system.", en: "Software Engineering major. Graduated with honors. Thesis on AI-powered recommendation systems." },
-    logo: "https://ui-avatars.com/api/?name=BK&background=dc2626&color=fff&size=48",
-  },
-  {
-    degree: { vi: "Chứng chỉ Full-Stack Web Development", en: "Full-Stack Web Development Certificate" },
-    school: "freeCodeCamp",
-    period: "2018",
-    gpa: "",
-    desc: { vi: "Hoàn thành 300+ giờ học lập trình web full-stack.", en: "Completed 300+ hours of full-stack web development training." },
-    logo: "https://ui-avatars.com/api/?name=FC&background=0d9488&color=fff&size=48",
+    logo: "https://scontent.fhan2-5.fna.fbcdn.net/v/t39.30808-6/472138550_1003410378482040_409936283574780032_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=53a332&_nc_ohc=5JlET0gPclQQ7kNvwHUs3N7&_nc_oc=Adn9UMo5SzAtjhWAUWQOuSHcppH-rVSfoIJhTD-3S_hKBiaLbgCPp_G-PydoHftOzAuD-SNfYzBJeg8I8s4OaKta&_nc_zt=23&_nc_ht=scontent.fhan2-5.fna&_nc_gid=tBncs1XhBmZlHOJuhGOj9A&_nc_ss=8&oh=00_Afw0FOkb8P4akPTimVzJAUkzAU8Zee4KAoarYbbTh41lLQ&oe=69ACFC96",
   },
 ];
 
@@ -370,9 +361,9 @@ function AnimatedSection({ children, className = "", delay = 0 }) {
 
 function SectionHeader({ title, subtitle }) {
   return (
-    <div className="text-center mb-16">
-      <p className="text-sm font-bold tracking-widest uppercase mb-3" style={{ color: "#a78bfa" }}>{subtitle}</p>
-      <h2 className="text-4xl md:text-5xl font-black text-white mb-4">{title}</h2>
+    <div className="text-center" style={{ marginBottom: "2rem" }}>
+      <p className="text-sm font-bold tracking-widest uppercase" style={{ color: "#a78bfa", marginBottom: "1rem" }}>{subtitle}</p>
+      <h2 className="text-4xl md:text-5xl font-black text-white" style={{ marginBottom: "1rem" }}>{title}</h2>
       <div className="flex items-center justify-center gap-2">
         <div className="h-px w-16 bg-gradient-to-r from-transparent to-violet-500"></div>
         <div className="w-2 h-2 rounded-full bg-violet-400"></div>
@@ -570,27 +561,31 @@ function Hero({ lang, tr }) {
               <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(124,58,237,0.1), rgba(236,72,153,0.1))" }} />
             </div>
             {/* Floating badges */}
-            <div style={{ position: "absolute", top: "-10px", right: "-20px", background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.3)", borderRadius: "12px", padding: "0.5rem 0.75rem", backdropFilter: "blur(10px)", animation: "float 3s ease-in-out infinite" }}>
-              <div style={{ color: "#10b981", fontWeight: 700, fontSize: "0.8rem" }}>Spring Boot</div>
+            <div style={{ position: "absolute", top: "-10px", right: "-20px", background: "#ffffff", border: "2px solid rgba(16,163,127,0.5)", borderRadius: "12px", padding: "0.5rem 0.75rem", backdropFilter: "blur(10px)", animation: "float 3s ease-in-out infinite" }}>
+              <div style={{ color: "#10A37F", fontWeight: 700, fontSize: "0.8rem", display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                <img src={chatGptLogo} alt="ChatGPT" style={{ width: "16px", height: "16px" }} /> ChatGPT
+              </div>
             </div>
-            <div style={{ position: "absolute", bottom: "10px", left: "-30px", background: "rgba(167,139,250,0.15)", border: "1px solid rgba(167,139,250,0.3)", borderRadius: "12px", padding: "0.5rem 0.75rem", backdropFilter: "blur(10px)", animation: "float 3s ease-in-out infinite 1.5s" }}>
-              <div style={{ color: "#a78bfa", fontWeight: 700, fontSize: "0.8rem" }}>.Net</div>
+            <div style={{ position: "absolute", bottom: "10px", left: "-30px", background: "#ffffff", border: "2px solid rgba(167,139,250,0.5)", borderRadius: "12px", padding: "0.5rem 0.75rem", backdropFilter: "blur(10px)", animation: "float 3s ease-in-out infinite 1.5s" }}>
+              <div style={{ color: "#000000", fontWeight: 700, fontSize: "0.8rem", display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                <img src={geminiLogo} alt="Gemini" style={{ width: "16px", height: "16px" }} /> Gemini
+              </div>
             </div>
             <div
               style={{
                 position: "absolute",
                 top: "40%",
                 left: "-60px",
-                background: "rgba(59,130,246,0.15)",
-                border: "1px solid rgba(59,130,246,0.4)",
+                background: "#ffffff",
+                border: "2px solid rgba(217,119,87,0.5)",
                 borderRadius: "12px",
                 padding: "0.5rem 0.75rem",
                 backdropFilter: "blur(10px)",
                 animation: "float 3s ease-in-out infinite 0.8s"
               }}
             >
-              <div style={{ color: "#3b82f6", fontWeight: 700, fontSize: "0.8rem" }}>
-                ReactJS
+              <div style={{ color: "#D97757", fontWeight: 700, fontSize: "0.8rem", display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                <img src={claudeLogo} alt="Claude" style={{ width: "16px", height: "16px" }} /> Claude
               </div>
             </div>
             <div
@@ -598,16 +593,16 @@ function Hero({ lang, tr }) {
                 position: "absolute",
                 top: "60%",
                 right: "-60px",
-                background: "rgba(239,68,68,0.15)",
-                border: "1px solid rgba(239,68,68,0.4)",
+                background: "#ffffff",
+                border: "2px solid rgba(239,68,68,0.5)",
                 borderRadius: "12px",
                 padding: "0.5rem 0.75rem",
                 backdropFilter: "blur(10px)",
                 animation: "float 3s ease-in-out infinite 2s"
               }}
             >
-              <div style={{ color: "#ef4444", fontWeight: 700, fontSize: "0.8rem" }}>
-                SQL
+              <div style={{ color: "#000000", fontWeight: 700, fontSize: "0.8rem", display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                <img src={grokLogo} alt="Grok" style={{ width: "16px", height: "16px" }} /> Grok
               </div>
             </div>
           </div>
@@ -730,7 +725,9 @@ function SkillCard({ skill }) {
   return (
     <div ref={ref} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
       style={{ background: hovered ? "rgba(167,139,250,0.1)" : "rgba(255,255,255,0.03)", border: `1px solid ${hovered ? "rgba(167,139,250,0.4)" : "rgba(255,255,255,0.06)"}`, borderRadius: "16px", padding: "1.25rem", transition: "all 0.3s", cursor: "default", transform: hovered ? "translateY(-4px)" : "translateY(0)" }}>
-      <div style={{ fontSize: "1.75rem", marginBottom: "0.5rem" }}>{skill.icon}</div>
+      <div style={{ width: "2rem", height: "2rem", marginBottom: "0.5rem", display: "flex", alignItems: "center" }}>
+        <StackIcon name={skill.icon} />
+      </div>
       <div style={{ fontWeight: 700, color: "white", fontSize: "0.9rem", marginBottom: "0.75rem" }}>{skill.name}</div>
       <div style={{ height: "4px", borderRadius: "2px", background: "rgba(255,255,255,0.08)", overflow: "hidden" }}>
         <div style={{ height: "100%", borderRadius: "2px", background: `linear-gradient(90deg, #7c3aed, #ec4899)`, width: inView ? `${skill.level}%` : "0%", transition: "width 1.2s ease 0.3s" }} />
