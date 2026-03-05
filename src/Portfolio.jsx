@@ -5,7 +5,34 @@ import claudeLogo from "./assets/ai-logo/claude-seeklogo.png";
 import geminiLogo from "./assets/ai-logo/google-gemini-icon-seeklogo.png";
 import grokLogo from "./assets/ai-logo/grok-seeklogo.png";
 import StackIcon from "tech-stack-icons";
+import resumePdf from "./assets/resume/resume.pdf";
+import certEthical from "./assets/certification/ethical-it-cert.pdf";
+import certPm from "./assets/certification/project-management-cert.pdf";
+import certSdlc from "./assets/certification/software-development-lifecycle-cert.pdf";
+import certWebDesign from "./assets/certification/web-design-cert.pdf";
 
+// ─── PDF VIEWER MODAL ─────────────────────────────────────────────────────────
+function PdfViewerModal({ isOpen, onClose, pdfUrl, title, tr }) {
+  if (!isOpen) return null;
+  return (
+    <div style={{ position: "fixed", inset: 0, zIndex: 9999, display: "flex", alignItems: "center", justifyContent: "center", padding: "2rem", background: "rgba(0,0,0,0.8)", backdropFilter: "blur(5px)" }} onClick={onClose}>
+      <div style={{ position: "relative", width: "100%", maxWidth: "1000px", height: "90vh", background: "#111", borderRadius: "16px", overflow: "hidden", border: "1px solid rgba(167,139,250,0.3)", display: "flex", flexDirection: "column", boxShadow: "0 25px 50px -12px rgba(124,58,237,0.5)" }} onClick={e => e.stopPropagation()}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "1rem 1.5rem", background: "rgba(255,255,255,0.05)", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
+          <h3 style={{ margin: 0, color: "white", fontSize: "1.2rem", fontWeight: 700 }}>{title || tr.about.cvTitle}</h3>
+          <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
+            <a href={pdfUrl || resumePdf} download="Document.pdf" style={{ display: "inline-flex", alignItems: "center", padding: "0.5rem 1rem", background: "linear-gradient(135deg, #7c3aed, #ec4899)", color: "white", textDecoration: "none", borderRadius: "8px", fontWeight: 600, fontSize: "0.9rem", transition: "transform 0.2s" }} onMouseEnter={e => e.currentTarget.style.transform = "scale(1.05)"} onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}>
+              {tr.about.downloadPdf}
+            </a>
+            <button onClick={onClose} style={{ background: "transparent", border: "none", color: "rgba(255,255,255,0.7)", fontSize: "1.8rem", cursor: "pointer", lineHeight: 1, padding: "0 0.5rem", transition: "color 0.2s" }} onMouseEnter={e => e.currentTarget.style.color = "white"} onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.7)"}>&times;</button>
+          </div>
+        </div>
+        <div style={{ flex: 1, position: "relative", background: "white" }}>
+          <iframe src={pdfUrl || resumePdf} style={{ width: "100%", height: "100%", border: "none" }} title="PDF Viewer" />
+        </div>
+      </div>
+    </div>
+  );
+}
 // ─── TRANSLATIONS ─────────────────────────────────────────────────────────────
 const t = {
   vi: {
@@ -32,9 +59,11 @@ const t = {
       p1: "Tôi là lập trình viên full-stack với hơn 5 năm kinh nghiệm, chuyên xây dựng ứng dụng web hiện đại và scalable. Tôi yêu thích việc biến những ý tưởng phức tạp thành những sản phẩm đơn giản, thanh lịch.",
       p2: "Ngoài công việc, tôi đam mê đóng góp cho open source, viết blog kỹ thuật và mentoring cho junior developers. Tôi tin rằng code tốt không chỉ là code chạy được, mà còn phải dễ đọc và bảo trì.",
       p3: "Khi không code, tôi thích đọc sách, leo núi và khám phá các quán cà phê mới.",
-      info: { dob: "15/03/1998", location: "Hà Nội, Việt Nam", email: "dev@example.com", phone: "+84 901 234 567", degree: "Cử nhân CNTT", freelance: "Sẵn sàng" },
-      labels: { dob: "Ngày sinh", location: "Địa điểm", email: "Email", phone: "Điện thoại", degree: "Bằng cấp", freelance: "Freelance" },
-      download: "Tải CV",
+      info: { dob: "25/09/2004", location: "Hà Nội, Việt Nam", email: "linhvodanh2004@gmail.com", phone: "+84 984 350 255" },
+      labels: { dob: "Ngày sinh", location: "Địa điểm", email: "Email", phone: "Điện thoại" },
+      download: "Xem CV",
+      cvTitle: "Sơ yếu lý lịch (CV)",
+      downloadPdf: "Tải PDF",
     },
     skills: {
       title: "Kỹ năng",
@@ -105,9 +134,11 @@ const t = {
       p1: "I'm a full-stack developer with 5+ years of experience, specializing in building modern, scalable web applications. I love turning complex ideas into simple, elegant products.",
       p2: "Beyond work, I'm passionate about open-source contributions, technical blogging, and mentoring junior developers. I believe good code isn't just code that works—it also needs to be readable and maintainable.",
       p3: "When not coding, I enjoy reading, hiking, and exploring new coffee shops.",
-      info: { dob: "Mar 15, 1998", location: "Hanoi, Vietnam", email: "dev@example.com", phone: "+84 901 234 567", degree: "B.S. Computer Science", freelance: "Available" },
-      labels: { dob: "Date of Birth", location: "Location", email: "Email", phone: "Phone", degree: "Degree", freelance: "Freelance" },
-      download: "Download CV",
+      info: { dob: "Sep 25, 2004", location: "Hanoi, Vietnam", email: "linhvodanh2004@gmail.com", phone: "+84 984 350 255" },
+      labels: { dob: "Date of Birth", location: "Location", email: "Email", phone: "Phone" },
+      download: "View CV",
+      cvTitle: "Curriculum Vitae",
+      downloadPdf: "Download PDF",
     },
     skills: {
       title: "Skills",
@@ -200,7 +231,10 @@ const workExp = [
     company: "FPT Software Academy",
     period: "05/2025 - 08/2025",
     location: "Hà Nội",
-    desc: { vi: "Dẫn dắt team 5 người xây dựng nền tảng SaaS phục vụ hơn 100K người dùng. Tối ưu performance giảm 40% load time.", en: "Led a 5-person team building a SaaS platform serving 100K+ users. Optimized performance reducing load time by 40%." },
+    desc: {
+      vi: ["Dẫn dắt team 5 người xây dựng nền tảng SaaS phục vụ hơn 100K người dùng.", "Tối ưu performance giảm 40% load time."],
+      en: ["Led a 5-person team building a SaaS platform serving 100K+ users.", "Optimized performance reducing load time by 40%."]
+    },
     tags: ["Thmeleaf", "Spring Boot", "MySQL", "AI Studio", "Jira", "Git", "Gitlab", "HTML/CSS/Javascript"],
     logo: "https://scontent.fhan2-4.fna.fbcdn.net/v/t39.30808-6/479494601_614420181340319_3909045382237007252_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=KCi5cVYRWGwQ7kNvwE5BnqH&_nc_oc=AdnPUI-LkFzjAg2KzzLNd7w9dk7FQPyd-Nwxrgk0I3-il3LZxZmXMTDPwSVVtSomXtENfVJjYwgkmsfNrPlQYI3T&_nc_zt=23&_nc_ht=scontent.fhan2-4.fna&_nc_gid=IM0kOi73nHedqzOEqv6Ucw&_nc_ss=8&oh=00_Afz4oJTV4QrV4AYV7bkrS9VoCKcAUknmZYYaahZzZBWvCw&oe=69AD04F4",
   },
@@ -212,16 +246,19 @@ const education = [
     school: "Đại học FPT Hà Nội",
     period: "2022 - 2026",
     gpa: "3.0/4.0",
-    desc: { vi: "Chuyên ngành Kỹ thuật phần mềm. Tốt nghiệp xuất sắc. Đồ án tốt nghiệp về AI-powered recommendation system.", en: "Software Engineering major. Graduated with honors. Thesis on AI-powered recommendation systems." },
+    desc: {
+      vi: ["Chuyên ngành Kỹ thuật phần mềm.", "Tốt nghiệp xuất sắc.", "Đồ án tốt nghiệp về AI-powered recommendation system."],
+      en: ["Software Engineering major.", "Graduated with honors.", "Thesis on AI-powered recommendation systems."]
+    },
     logo: "https://scontent.fhan2-5.fna.fbcdn.net/v/t39.30808-6/472138550_1003410378482040_409936283574780032_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=53a332&_nc_ohc=5JlET0gPclQQ7kNvwHUs3N7&_nc_oc=Adn9UMo5SzAtjhWAUWQOuSHcppH-rVSfoIJhTD-3S_hKBiaLbgCPp_G-PydoHftOzAuD-SNfYzBJeg8I8s4OaKta&_nc_zt=23&_nc_ht=scontent.fhan2-5.fna&_nc_gid=tBncs1XhBmZlHOJuhGOj9A&_nc_ss=8&oh=00_Afw0FOkb8P4akPTimVzJAUkzAU8Zee4KAoarYbbTh41lLQ&oe=69ACFC96",
   },
 ];
 
 const certs = [
-  { name: "AWS Solutions Architect Associate", issuer: "Amazon Web Services", year: "2023", badge: "https://ui-avatars.com/api/?name=AWS&background=FF9900&color=fff&size=48" },
-  { name: "Google Cloud Professional Developer", issuer: "Google", year: "2022", badge: "https://ui-avatars.com/api/?name=GC&background=4285F4&color=fff&size=48" },
-  { name: "Meta React Developer", issuer: "Meta", year: "2022", badge: "https://ui-avatars.com/api/?name=M&background=0866FF&color=fff&size=48" },
-  { name: "MongoDB Developer Certification", issuer: "MongoDB", year: "2021", badge: "https://ui-avatars.com/api/?name=MDB&background=47A248&color=fff&size=48" },
+  { name: "Software Development Lifecycle - Coursera", issuer: "University of Minnesota", year: "2025", badge: "https://images.seeklogo.com/logo-png/48/3/university-of-minnesota-logo-png_seeklogo-486602.png", pdf: certSdlc },
+  { name: "Web Design for Everybody - Coursera", issuer: "University of Michigan", year: "2024", badge: "https://images.higheredjobs.com/images/instProfile/logo-15349.jpg?77E2DDB2-D1B8-5005-F67F339FF4AB8F45", pdf: certWebDesign },
+  { name: "CertNexus Certified Ethical Emerging Technologist - Coursera", issuer: "CertNexus", year: "2025", badge: "https://trainingcamp.com/wp-content/uploads/2024/12/certnexuspartner.png", pdf: certEthical },
+  { name: "Project Management Principles and Practices - Coursera", issuer: "University of California, Irvine", year: "2025", badge: "https://business.time.com/wp-content/uploads/sites/2/2012/06/uci.jpg?w=360&h=240&crop=1", pdf: certPm },
 ];
 
 const projects = [
@@ -637,7 +674,7 @@ function Stats({ tr }) {
 }
 
 // ─── ABOUT ────────────────────────────────────────────────────────────────────
-function About({ lang, tr }) {
+function About({ lang, tr, onOpenCv }) {
   const a = tr.about;
   return (
     <section id="about" style={{ padding: "6rem 2rem" }}>
@@ -665,7 +702,7 @@ function About({ lang, tr }) {
             <p style={{ color: "rgba(255,255,255,0.75)", lineHeight: 1.9, marginBottom: "1.25rem" }}>{a.p2}</p>
             <p style={{ color: "rgba(255,255,255,0.75)", lineHeight: 1.9, marginBottom: "2rem" }}>{a.p3}</p>
 
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem", marginBottom: "2rem" }}>
+            <div className="info-grid-mobile" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem", marginBottom: "2rem" }}>
               {Object.keys(a.labels).map(key => (
                 <div key={key} style={{ display: "flex", gap: "0.5rem" }}>
                   <span style={{ color: "#a78bfa", fontWeight: 600, fontSize: "0.85rem", minWidth: "80px" }}>{a.labels[key]}:</span>
@@ -674,9 +711,9 @@ function About({ lang, tr }) {
               ))}
             </div>
 
-            <a href="#" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.85rem 2rem", borderRadius: "12px", fontWeight: 700, background: "linear-gradient(135deg, #7c3aed, #ec4899)", color: "white", textDecoration: "none", transition: "all 0.3s", boxShadow: "0 0 30px rgba(124,58,237,0.3)" }}>
-              ↓ {a.download}
-            </a>
+            <button onClick={(e) => { e.preventDefault(); onOpenCv(); }} style={{ display: "inline-flex", border: "none", cursor: "pointer", fontSize: "1rem", alignItems: "center", gap: "0.5rem", padding: "0.85rem 2rem", borderRadius: "12px", fontWeight: 700, background: "linear-gradient(135deg, #7c3aed, #ec4899)", color: "white", textDecoration: "none", transition: "all 0.3s", boxShadow: "0 0 30px rgba(124,58,237,0.3)" }}>
+              {a.download}
+            </button>
           </AnimatedSection>
         </div>
       </div>
@@ -738,7 +775,7 @@ function SkillCard({ skill }) {
 }
 
 // ─── EXPERIENCE ───────────────────────────────────────────────────────────────
-function Experience({ lang, tr }) {
+function Experience({ lang, tr, onOpenPdf }) {
   const [tab, setTab] = useState(0);
   const tabs = tr.experience.tabs;
 
@@ -775,7 +812,9 @@ function Experience({ lang, tr }) {
                       </div>
                       <span style={{ background: "rgba(167,139,250,0.1)", border: "1px solid rgba(167,139,250,0.2)", borderRadius: "8px", padding: "0.3rem 0.75rem", color: "#a78bfa", fontSize: "0.8rem", fontWeight: 600, height: "fit-content" }}>{exp.period}</span>
                     </div>
-                    <p style={{ color: "rgba(255,255,255,0.65)", lineHeight: 1.7, fontSize: "0.9rem", marginBottom: "1rem" }}>{exp.desc[lang]}</p>
+                    <ul style={{ color: "rgba(255,255,255,0.65)", lineHeight: 1.7, fontSize: "0.9rem", marginBottom: "1rem", paddingLeft: "1.2rem" }}>
+                      {Array.isArray(exp.desc[lang]) ? exp.desc[lang].map((item, idx) => <li key={idx} style={{ marginBottom: "0.4rem" }}>{item}</li>) : <li style={{ marginBottom: "0.4rem" }}>{exp.desc[lang]}</li>}
+                    </ul>
                     <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
                       {exp.tags.map(tag => (
                         <span key={tag} style={{ background: "rgba(124,58,237,0.15)", border: "1px solid rgba(124,58,237,0.2)", borderRadius: "6px", padding: "0.2rem 0.6rem", fontSize: "0.75rem", color: "#c4b5fd", fontWeight: 600 }}>{tag}</span>
@@ -806,7 +845,9 @@ function Experience({ lang, tr }) {
                         {edu.gpa && <p style={{ color: "#10b981", fontSize: "0.8rem", marginTop: "0.25rem", fontWeight: 600 }}>GPA: {edu.gpa}</p>}
                       </div>
                     </div>
-                    <p style={{ color: "rgba(255,255,255,0.65)", fontSize: "0.9rem", lineHeight: 1.7, marginTop: "0.5rem" }}>{edu.desc[lang]}</p>
+                    <ul style={{ color: "rgba(255,255,255,0.65)", fontSize: "0.9rem", lineHeight: 1.7, marginTop: "0.5rem", paddingLeft: "1.2rem" }}>
+                      {Array.isArray(edu.desc[lang]) ? edu.desc[lang].map((item, idx) => <li key={idx} style={{ marginBottom: "0.4rem" }}>{item}</li>) : <li style={{ marginBottom: "0.4rem" }}>{edu.desc[lang]}</li>}
+                    </ul>
                   </div>
                 </div>
               </AnimatedSection>
@@ -819,12 +860,15 @@ function Experience({ lang, tr }) {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: "1rem" }}>
             {certs.map((cert, i) => (
               <AnimatedSection key={i} delay={i * 0.1}>
-                <div style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: "16px", padding: "1.25rem", textAlign: "center", transition: "all 0.3s" }}
+                <div style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: "16px", padding: "1.25rem", textAlign: "center", transition: "all 0.3s", cursor: cert.pdf ? "pointer" : "default" }}
                   onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(167,139,250,0.3)"; e.currentTarget.style.transform = "translateY(-4px)"; }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.06)"; e.currentTarget.style.transform = "translateY(0)"; }}>
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.06)"; e.currentTarget.style.transform = "translateY(0)"; }}
+                  onClick={() => cert.pdf && onOpenPdf(cert.pdf, cert.name)}>
                   <img src={cert.badge} alt={cert.name} style={{ width: "56px", height: "56px", borderRadius: "12px", marginBottom: "0.75rem" }} />
-                  <h4 style={{ color: "white", fontWeight: 700, fontSize: "0.85rem", marginBottom: "0.25rem" }}>{cert.name}</h4>
-                  <p style={{ color: "#a78bfa", fontSize: "0.78rem" }}>{cert.issuer} · {cert.year}</p>
+                  <h4 style={{ color: "white", fontWeight: 700, fontSize: "0.85rem", marginBottom: "0.25rem", minHeight: "4rem" }}>{cert.name}</h4>
+                  <p style={{ color: "#a78bfa", fontSize: "0.78rem" }}>{cert.issuer}</p>
+                  <p style={{ color: "rgb(236, 72, 153)", fontSize: "0.7rem", border: "1px solid rgba(236, 72, 153, 0.6)", borderRadius: "8px", padding: "0.3rem 0.75rem", marginTop: "0.5rem" }}>{cert.year}</p>
+
                 </div>
               </AnimatedSection>
             ))}
@@ -941,38 +985,97 @@ function ServiceCard({ svc, lang }) {
 function Testimonials({ lang, tr }) {
   const [active, setActive] = useState(0);
 
-  return (
-    <section style={{ padding: "6rem 2rem", background: "rgba(139,92,246,0.03)" }}>
-      <div style={{ maxWidth: "900px", margin: "0 auto" }}>
-        <SectionHeader title={tr.testimonials.title} subtitle={tr.testimonials.subtitle} />
-        <div style={{ position: "relative" }}>
-          <AnimatedSection>
-            <div style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: "24px", padding: "3rem", textAlign: "center" }}>
-              <div style={{ fontSize: "4rem", marginBottom: "1.5rem", opacity: 0.2, fontFamily: "serif", color: "#a78bfa" }}>"</div>
-              <p style={{ color: "rgba(255,255,255,0.8)", fontSize: "1.1rem", lineHeight: 1.8, fontStyle: "italic", marginBottom: "2rem" }}>{testimonials[active].text[lang]}</p>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "1rem" }}>
-                <img src={testimonials[active].avatar} alt={testimonials[active].name} style={{ width: "56px", height: "56px", borderRadius: "50%", border: "2px solid rgba(167,139,250,0.3)" }} />
-                <div style={{ textAlign: "left" }}>
-                  <div style={{ color: "white", fontWeight: 700 }}>{testimonials[active].name}</div>
-                  <div style={{ color: "#a78bfa", fontSize: "0.85rem" }}>{testimonials[active].role[lang]}</div>
-                </div>
-                <div style={{ marginLeft: "auto" }}>
-                  {"★".repeat(testimonials[active].rating).split("").map((_, i) => (
-                    <span key={i} style={{ color: "#fbbf24", fontSize: "1.1rem" }}>★</span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </AnimatedSection>
+  // Auto rotate testimonials
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActive((prev) => (prev + 1) % testimonials.length);
+    }, 5000); // 5s auto-rotate like the classic slider
+    return () => clearInterval(timer);
+  }, []);
 
-          {/* Dots */}
-          <div style={{ display: "flex", justifyContent: "center", gap: "0.5rem", marginTop: "2rem" }}>
-            {testimonials.map((_, i) => (
-              <button key={i} onClick={() => setActive(i)}
-                style={{ width: i === active ? "24px" : "8px", height: "8px", borderRadius: "4px", background: i === active ? "linear-gradient(90deg, #7c3aed, #ec4899)" : "rgba(255,255,255,0.2)", border: "none", cursor: "pointer", transition: "all 0.3s" }} />
-            ))}
+  // Compute 3D rotation based on active index
+  // Each card is separated by 360 / length degrees
+  const angle = 360 / testimonials.length;
+  // To bring 'active' item to front (0deg), the carousel rotates in opposite direction:
+  const carouselRotation = -active * angle;
+
+  return (
+    <section id="testimonials" style={{ padding: "6rem 2rem", background: "rgba(139,92,246,0.03)", overflow: "hidden" }}>
+      <div style={{ maxWidth: "1200px", margin: "0 auto", textAlign: "center" }}>
+        <SectionHeader title={tr.testimonials.title} subtitle={tr.testimonials.subtitle} />
+
+        <AnimatedSection>
+          {/* Main 3D Scene */}
+          <div style={{ perspective: "1000px", position: "relative", height: "400px", display: "flex", justifyContent: "center", alignItems: "center", marginTop: "2rem" }}>
+            <div style={{
+              width: "100%", maxWidth: "500px", height: "100%", position: "absolute",
+              transformStyle: "preserve-3d",
+              transform: `translateZ(-350px) rotateY(${carouselRotation}deg)`,
+              transition: "transform 1s cubic-bezier(0.2, 0.8, 0.2, 1)"
+            }}>
+              {testimonials.map((test, i) => {
+                const itemAngle = i * angle;
+                const isActive = i === active;
+                // Calculate z-translation based on radius to form a circle
+                // radius ~ width / (2 * tan(PI / n)). For 4 items and 500px width, r = 250px.
+                // We'll use 350px fixed to give it more breathing room.
+                return (
+                  <div key={i} style={{
+                    position: "absolute",
+                    width: "100%",
+                    height: "100%",
+                    left: 0,
+                    top: 0,
+                    transform: `rotateY(${itemAngle}deg) translateZ(350px)`,
+                    opacity: isActive ? 1 : 0.4,
+                    filter: isActive ? "none" : "blur(2px)",
+                    transition: "opacity 0.6s, filter 0.6s",
+                    pointerEvents: isActive ? "auto" : "none",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center"
+                  }}>
+                    {/* Testimonial Card Content */}
+                    <div style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: "24px", padding: "2.5rem", textAlign: "left", width: "100%", backdropFilter: "blur(10px)", boxShadow: isActive ? "0 20px 40px rgba(0,0,0,0.3), inset 0 0 0 1px rgba(167,139,250,0.4)" : "none", transition: "all 0.5s" }}>
+
+                      <div style={{ color: "rgba(167,139,250,0.8)", marginBottom: "1.5rem" }}>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" style={{ width: "2rem", height: "2rem" }}><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"></path></svg>
+                      </div>
+
+                      <p style={{ color: "rgba(255,255,255,0.9)", fontSize: "1.05rem", lineHeight: 1.8, fontStyle: "italic", marginBottom: "2rem", fontWeight: 500, minHeight: "100px" }}>
+                        "{test.text[lang]}"
+                      </p>
+
+                      <div style={{ display: "flex", alignItems: "center", gap: "1rem", paddingTop: "1.25rem", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
+                        <img src={test.avatar} alt={test.name} style={{ width: "48px", height: "48px", borderRadius: "50%", border: "2px solid rgba(167,139,250,0.5)", background: "linear-gradient(135deg, #7c3aed, #ec4899)", objectFit: "cover" }} />
+                        <div>
+                          <div style={{ color: "white", fontWeight: 700, fontSize: "1rem" }}>{test.name}</div>
+                          <div style={{ color: "#a78bfa", fontSize: "0.85rem", fontWeight: 600 }}>{test.role[lang]}</div>
+                        </div>
+                        <div style={{ marginLeft: "auto", display: "flex", gap: "0.15rem" }}>
+                          {"★".repeat(test.rating).split("").map((_, j) => (
+                            <svg key={j} xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" style={{ width: "1rem", height: "1rem", color: "#fbbf24" }}><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
+        </AnimatedSection>
+
+        {/* Navigation Dots */}
+        <div style={{ display: "flex", justifyContent: "center", gap: "0.75rem", marginTop: "3rem" }}>
+          {testimonials.map((_, i) => (
+            <button key={i} onClick={() => setActive(i)}
+              style={{ width: i === active ? "32px" : "10px", height: "10px", borderRadius: "5px", background: i === active ? "linear-gradient(90deg, #7c3aed, #ec4899)" : "rgba(255,255,255,0.2)", border: "none", cursor: "pointer", transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)" }}
+              aria-label={`Go to slide ${i + 1}`}
+            />
+          ))}
         </div>
+
       </div>
     </section>
   );
@@ -1117,7 +1220,22 @@ function Footer({ lang, tr }) {
 // ─── APP ──────────────────────────────────────────────────────────────────────
 export default function Portfolio() {
   const [lang, setLang] = useState("vi");
+  const [isCvOpen, setIsCvOpen] = useState(false);
+  const [activePdfUrl, setActivePdfUrl] = useState(null);
+  const [activePdfTitle, setActivePdfTitle] = useState(null);
   const tr = t[lang];
+
+  const handleOpenPdf = (url, title) => {
+    setActivePdfUrl(url);
+    setActivePdfTitle(title);
+    setIsCvOpen(true);
+  };
+
+  const handleClosePdf = () => {
+    setIsCvOpen(false);
+    setActivePdfUrl(null);
+    setActivePdfTitle(null);
+  };
 
   return (
     <div style={{ background: "#05050f", color: "white", minHeight: "100vh", fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
@@ -1145,6 +1263,7 @@ export default function Portfolio() {
           .hero-grid > div:last-child { display: none; }
           .about-grid { grid-template-columns: 1fr !important; }
           .about-grid > div:first-child { display: none; }
+          .info-grid-mobile { grid-template-columns: 1fr !important; }
           .contact-grid { grid-template-columns: 1fr !important; }
           .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
           .hidden-mobile { display: none !important; }
@@ -1155,15 +1274,16 @@ export default function Portfolio() {
       <Navbar lang={lang} setLang={setLang} tr={tr} />
       <Hero lang={lang} tr={tr} />
       <Stats tr={tr} />
-      <About lang={lang} tr={tr} />
+      <About lang={lang} tr={tr} onOpenCv={() => handleOpenPdf(resumePdf, tr.about.cvTitle)} />
       <Skills lang={lang} tr={tr} />
-      <Experience lang={lang} tr={tr} />
+      <Experience lang={lang} tr={tr} onOpenPdf={handleOpenPdf} />
       <Projects lang={lang} tr={tr} />
       <Services lang={lang} tr={tr} />
       <Testimonials lang={lang} tr={tr} />
       <Blog lang={lang} tr={tr} />
       <Contact lang={lang} tr={tr} />
       <Footer lang={lang} tr={tr} />
+      <PdfViewerModal isOpen={isCvOpen} onClose={handleClosePdf} tr={tr} pdfUrl={activePdfUrl} title={activePdfTitle} />
     </div>
   );
 }

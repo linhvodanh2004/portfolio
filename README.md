@@ -1,16 +1,65 @@
-# React + Vite
+# Pixel Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, highly interactive personal portfolio for Software Engineers, designed with premium aesthetics and responsive UI.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Premium UI Design**: Built with a dark theme, utilizing vibrant gradients, glassmorphism, and subtle micro-animations (e.g., floating cards, pulse effects, blurred backdrops).
+- **Interactive 3D Carousel**: A custom, CSS-only 3D rotating testimonial slider that auto-rotates and supports navigation dots.
+- **Dynamic PDF Viewer Modal**: An integrated modal system to seamlessly view and download documents (e.g., CVs, Certifications) directly within the app without navigating away.
+- **Multilingual Support**: Built-in translation toggle (Vietnamese `vi` and English `en`) supporting all localized strings across components.
+- **Responsive Layout**: Designed to look great on all devices, dynamically adjusting grid layouts (e.g., from 2 columns to 1 column) on smaller screens (mobile / tablet).
+- **Tech Stack Iconography**: Utilizes the `tech-stack-icons` library for crisp, scalable vectors of popular development tools and frameworks.
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Framework**: React / Vite
+- **Styling**: Vanilla CSS (CSS-in-JS inline objects pattern) + Scoped Animations
+- **Icons**: `tech-stack-icons` & native SVG / Emojis
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Local Development
+
+Ensure you have Node.js installed on your machine.
+
+1.  **Clone the repository:**
+    ```bash
+    git clone <repository-url>
+    cd pixel-portfolio
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    # or
+    yarn install
+    ```
+
+3.  **Run the development server:**
+    ```bash
+    npm run dev
+    # or
+    yarn dev
+    ```
+    This will start the local server, typically running at `http://localhost:5173`.
+
+4.  **Build for production:**
+    ```bash
+    npm run build
+    # or
+    yarn build
+    ```
+
+## Project Structure (Key Files)
+
+- `src/Portfolio.jsx`: The monolithic entry point containing all components (`Navbar`, `Hero`, `About`, `Skills`, `Experience` with embedded PDF viewing, `Testimonials` 3D layout, `Projects`, `Blog`, `Contact`).
+- `src/assets/`: Contains all static media files:
+  - `resume/`: Holds the primary `resume.pdf`.
+  - `certification/`: Contains `.pdf` files mapped to the cert cards.
+  - `ai-logo/`: Graphics for AI stack visualization.
+
+## Author
+
+**LinhPN**
+- Email: linhvodanh2004@gmail.com
+- Role: Full-Stack Developer
