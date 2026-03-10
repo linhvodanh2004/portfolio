@@ -10,6 +10,8 @@ import certEthical from "./assets/certification/ethical-it-cert.pdf";
 import certPm from "./assets/certification/project-management-cert.pdf";
 import certSdlc from "./assets/certification/software-development-lifecycle-cert.pdf";
 import certWebDesign from "./assets/certification/web-design-cert.pdf";
+import fsaExperience from "./assets/exp/fsa.webp";
+import fptuEducation from "./assets/edu/fptu.webp";
 
 // ─── PDF VIEWER MODAL ─────────────────────────────────────────────────────────
 function PdfViewerModal({ isOpen, onClose, pdfUrl, title, tr }) {
@@ -236,21 +238,21 @@ const workExp = [
       en: ["Led a 5-person team building a SaaS platform serving 100K+ users.", "Optimized performance reducing load time by 40%."]
     },
     tags: ["Thmeleaf", "Spring Boot", "MySQL", "AI Studio", "Jira", "Git", "Gitlab", "HTML/CSS/Javascript"],
-    logo: "https://scontent.fhan2-4.fna.fbcdn.net/v/t39.30808-6/479494601_614420181340319_3909045382237007252_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=KCi5cVYRWGwQ7kNvwE5BnqH&_nc_oc=AdnPUI-LkFzjAg2KzzLNd7w9dk7FQPyd-Nwxrgk0I3-il3LZxZmXMTDPwSVVtSomXtENfVJjYwgkmsfNrPlQYI3T&_nc_zt=23&_nc_ht=scontent.fhan2-4.fna&_nc_gid=IM0kOi73nHedqzOEqv6Ucw&_nc_ss=8&oh=00_Afz4oJTV4QrV4AYV7bkrS9VoCKcAUknmZYYaahZzZBWvCw&oe=69AD04F4",
+    logo: fsaExperience,
   },
 ];
 
 const education = [
   {
     degree: { vi: "Cử nhân Kỹ Thuật Phần Mềm", en: "Bachelor of Software Engineering" },
-    school: "Đại học FPT Hà Nội",
+    school: { vi: "Đại học FPT", en: "FPT University" },
     period: "2022 - 2026",
     gpa: "3.0/4.0",
     desc: {
       vi: ["Chuyên ngành Kỹ thuật phần mềm.", "Tốt nghiệp xuất sắc.", "Đồ án tốt nghiệp về AI-powered recommendation system."],
       en: ["Software Engineering major.", "Graduated with honors.", "Thesis on AI-powered recommendation systems."]
     },
-    logo: "https://scontent.fhan2-5.fna.fbcdn.net/v/t39.30808-6/472138550_1003410378482040_409936283574780032_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=53a332&_nc_ohc=5JlET0gPclQQ7kNvwHUs3N7&_nc_oc=Adn9UMo5SzAtjhWAUWQOuSHcppH-rVSfoIJhTD-3S_hKBiaLbgCPp_G-PydoHftOzAuD-SNfYzBJeg8I8s4OaKta&_nc_zt=23&_nc_ht=scontent.fhan2-5.fna&_nc_gid=tBncs1XhBmZlHOJuhGOj9A&_nc_ss=8&oh=00_Afw0FOkb8P4akPTimVzJAUkzAU8Zee4KAoarYbbTh41lLQ&oe=69ACFC96",
+    logo: fptuEducation,
   },
 ];
 
@@ -336,10 +338,10 @@ const services = [
 ];
 
 const testimonials = [
-  { name: "Trần Minh Hoàng", role: { vi: "CEO, StartupXYZ", en: "CEO, StartupXYZ" }, text: { vi: "Làm việc với Nguyễn Dev là trải nghiệm tuyệt vời. Code chất lượng cao, deadline luôn đúng hạn và communication rất tốt.", en: "Working with Nguyen Dev was a great experience. High quality code, always on time and excellent communication." }, avatar: "https://ui-avatars.com/api/?name=TMH&background=6366f1&color=fff&size=64", rating: 5 },
-  { name: "Sarah Johnson", role: { vi: "CTO, TechCorp", en: "CTO, TechCorp" }, text: { vi: "Một trong những developer giỏi nhất tôi từng làm việc cùng. Tư duy kỹ thuật xuất sắc và luôn đề xuất giải pháp sáng tạo.", en: "One of the best developers I've ever worked with. Outstanding technical thinking and always proposing creative solutions." }, avatar: "https://ui-avatars.com/api/?name=SJ&background=ec4899&color=fff&size=64", rating: 5 },
-  { name: "Lê Văn Hùng", role: { vi: "Product Manager", en: "Product Manager" }, text: { vi: "Hiểu business requirement rất nhanh và translate thành technical solution hiệu quả. Sẽ tiếp tục hợp tác dài hạn.", en: "Understands business requirements quickly and translates them into effective technical solutions. Will continue long-term collaboration." }, avatar: "https://ui-avatars.com/api/?name=LVH&background=f59e0b&color=fff&size=64", rating: 5 },
-  { name: "Maria Garcia", role: { vi: "Founder, HealthTrack", en: "Founder, HealthTrack" }, text: { vi: "Dev deliver app đúng vision của tôi, thậm chí còn tốt hơn kỳ vọng. Rất recommend!", en: "Dev delivered the app exactly to my vision, even exceeding expectations. Highly recommended!" }, avatar: "https://ui-avatars.com/api/?name=MG&background=0d9488&color=fff&size=64", rating: 5 },
+  { name: { vi: "Lê Xuân Hoàng Nam", en: "Le Xuan Hoang Nam" }, role: { vi: "Kĩ sư DevOps", en: "DevOps Engineer" }, text: { vi: "Làm việc với Nguyễn Dev là trải nghiệm tuyệt vời. Code chất lượng cao, deadline luôn đúng hạn và communication rất tốt.", en: "Working with Nguyen Dev was a great experience. High quality code, always on time and excellent communication." }, avatar: "https://ui-avatars.com/api/?name=TMH&background=6366f1&color=fff&size=64", rating: 5 },
+  { name: { vi: "Trần Đình Dũng", en: "Tran Dinh Dung" }, role: { vi: "Lập trình viên Frontend", en: "Frontend Developer" }, text: { vi: "Một trong những developer giỏi nhất tôi từng làm việc cùng. Tư duy kỹ thuật xuất sắc và luôn đề xuất giải pháp sáng tạo.", en: "One of the best developers I've ever worked with. Outstanding technical thinking and always proposing creative solutions." }, avatar: "https://ui-avatars.com/api/?name=TDD&background=ec4899&color=fff&size=64", rating: 5 },
+  { name: { vi: "Vương Diệu Hoa", en: "Vuong Dieu Hoa" }, role: { vi: "Nhân viên Social Media", en: "Social Media Specialist" }, text: { vi: "Hiểu business requirement rất nhanh và translate thành technical solution hiệu quả. Sẽ tiếp tục hợp tác dài hạn.", en: "Understands business requirements quickly and translates them into effective technical solutions. Will continue long-term collaboration." }, avatar: "https://ui-avatars.com/api/?name=VDH&background=f59e0b&color=fff&size=64", rating: 5 },
+  { name: { vi: "Đoàn Kiến Quốc", en: "Doan Kien Quoc" }, role: { vi: "Kĩ sư DevOps", en: "DevOps Engineer" }, text: { vi: "Dev deliver app đúng vision của tôi, thậm chí còn tốt hơn kỳ vọng. Rất recommend!", en: "Dev delivered the app exactly to my vision, even exceeding expectations. Highly recommended!" }, avatar: "https://ui-avatars.com/api/?name=DKQ&background=0d9488&color=fff&size=64", rating: 5 },
 ];
 
 const blogPosts = [
@@ -838,7 +840,7 @@ function Experience({ lang, tr, onOpenPdf }) {
                     <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "0.5rem" }}>
                       <div>
                         <h3 style={{ fontWeight: 800, color: "white", fontSize: "1rem" }}>{edu.degree[lang]}</h3>
-                        <p style={{ color: "#a78bfa", fontSize: "0.9rem", fontWeight: 600 }}>{edu.school}</p>
+                        <p style={{ color: "#a78bfa", fontSize: "0.9rem", fontWeight: 600 }}>{edu.school[lang]}</p>
                       </div>
                       <div style={{ textAlign: "right" }}>
                         <span style={{ background: "rgba(167,139,250,0.1)", border: "1px solid rgba(167,139,250,0.2)", borderRadius: "8px", padding: "0.3rem 0.75rem", color: "#a78bfa", fontSize: "0.8rem", fontWeight: 600 }}>{edu.period}</span>
@@ -1049,7 +1051,7 @@ function Testimonials({ lang, tr }) {
                       <div style={{ display: "flex", alignItems: "center", gap: "1rem", paddingTop: "1.25rem", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
                         <img src={test.avatar} alt={test.name} style={{ width: "48px", height: "48px", borderRadius: "50%", border: "2px solid rgba(167,139,250,0.5)", background: "linear-gradient(135deg, #7c3aed, #ec4899)", objectFit: "cover" }} />
                         <div>
-                          <div style={{ color: "white", fontWeight: 700, fontSize: "1rem" }}>{test.name}</div>
+                          <div style={{ color: "white", fontWeight: 700, fontSize: "1rem" }}>{test.name[lang]}</div>
                           <div style={{ color: "#a78bfa", fontSize: "0.85rem", fontWeight: 600 }}>{test.role[lang]}</div>
                         </div>
                         <div style={{ marginLeft: "auto", display: "flex", gap: "0.15rem" }}>
