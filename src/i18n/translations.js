@@ -98,7 +98,7 @@ export const translations = {
     },
     footer: {
       rights: "Bảo lưu mọi quyền",
-      built: "Xây dựng với ❤️ và React",
+      built: "Được vận hành và phát triển bởi Linh Phùng và Antigravity",
     },
   },
   en: {
@@ -200,7 +200,7 @@ export const translations = {
     },
     footer: {
       rights: "All rights reserved",
-      built: "Built with ❤️ and React",
+      built: "Powered and Developed by Linh Phung and Antigravity",
     },
   },
 };

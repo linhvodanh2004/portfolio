@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTheme } from "./hooks/useTheme";
 import resumePdf from "./assets/resume/resume.pdf";
 import { translations } from "./i18n/translations";
 import { Navbar } from "./components/layout/Navbar";
@@ -22,6 +23,8 @@ export default function Portfolio() {
   const [isCvOpen, setIsCvOpen] = useState(false);
   const [activePdfUrl, setActivePdfUrl] = useState(null);
   const [activePdfTitle, setActivePdfTitle] = useState(null);
+  const { theme } = useTheme();
+  
   const tr = t[lang];
 
   const handleOpenPdf = (url, title) => {
@@ -39,26 +42,57 @@ export default function Portfolio() {
   return (
     <div
       style={{
-        background: "#05050f",
-        color: "white",
+        background: "var(--bg-primary)",
+        color: "var(--text-primary)",
         minHeight: "100vh",
         fontFamily: "'Plus Jakarta Sans', sans-serif",
+        transition: "background-color 0.3s ease, color 0.3s ease",
       }}
     >
       <style>{`
+        :root {
+          /* Dark Theme Variables */
+          --bg-primary: #05050f;
+          --bg-secondary: rgba(255, 255, 255, 0.03);
+          --bg-tertiary: rgba(255, 255, 255, 0.06);
+          --text-primary: #ffffff;
+          --text-secondary: rgba(255, 255, 255, 0.7);
+          --text-muted: rgba(255, 255, 255, 0.4);
+          --border-color: rgba(255, 255, 255, 0.06);
+          --border-color-hover: rgba(167, 139, 250, 0.3);
+          --accent-primary: #7c3aed;
+          --accent-secondary: #ec4899;
+          --input-bg: rgba(255, 255, 255, 0.03);
+          --modal-bg: rgba(10, 10, 20, 0.95);
+        }
+
+        .theme-light {
+          /* Light Theme Variables */
+          --bg-primary: #f8fafc;
+          --bg-secondary: #ffffff;
+          --bg-tertiary: rgba(0, 0, 0, 0.03);
+          --text-primary: #0f172a;
+          --text-secondary: #334155;
+          --text-muted: #64748b;
+          --border-color: rgba(0, 0, 0, 0.08);
+          --border-color-hover: rgba(124, 58, 237, 0.4);
+          --input-bg: rgba(0, 0, 0, 0.02);
+          --modal-bg: rgba(255, 255, 255, 0.95);
+        }
+
         @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #05050f; }
-        ::-webkit-scrollbar-thumb { background: #7c3aed; border-radius: 3px; }
+        ::-webkit-scrollbar-track { background: var(--bg-primary); }
+        ::-webkit-scrollbar-thumb { background: var(--accent-primary); border-radius: 3px; }
 
         @keyframes pulse { 0%, 100% { opacity: 0.7; transform: scale(1); } 50% { opacity: 1; transform: scale(1.05); } }
         @keyframes spin { to { transform: rotate(360deg); } }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-        input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.25); }
+        input::placeholder, textarea::placeholder { color: var(--text-muted); }
         input:focus, textarea:focus { border-color: rgba(167,139,250,0.5) !important; }
 
         .hidden-mobile { display: flex; }

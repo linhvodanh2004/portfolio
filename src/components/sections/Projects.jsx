@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { projects as projectsData } from "../../data/projects";
 import { AnimatedSection } from "../common/AnimatedSection";
 import { SectionHeader } from "../common/SectionHeader";
+import { Star, TrendingUp, ExternalLink, Code } from "lucide-react";
 
 export function Projects({ lang, tr }) {
   const [filter, setFilter] = useState(0);
@@ -12,13 +13,13 @@ export function Projects({ lang, tr }) {
     filter === 0
       ? projectsData
       : projectsData.filter(
-          (p) => p.cat === filterKeys[filter]
-        );
+        (p) => p.cat === filterKeys[filter]
+      );
 
   return (
     <section
       id="projects"
-      style={{ padding: "6rem 2rem", background: "rgba(139,92,246,0.03)" }}
+      style={{ padding: "6rem 2rem", background: "var(--bg-tertiary)" }}
     >
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         <SectionHeader
@@ -47,12 +48,12 @@ export function Projects({ lang, tr }) {
                 border:
                   filter === i
                     ? "none"
-                    : "1px solid rgba(255,255,255,0.1)",
+                    : "1px solid var(--border-color)",
                 background:
                   filter === i
-                    ? "linear-gradient(135deg, #7c3aed, #ec4899)"
-                    : "rgba(255,255,255,0.05)",
-                color: "white",
+                    ? "linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))"
+                    : "var(--bg-tertiary)",
+                color: filter === i ? "#ffffff" : "var(--text-primary)", // sửa ở đây
                 cursor: "pointer",
                 transition: "all 0.2s",
               }}
@@ -71,7 +72,7 @@ export function Projects({ lang, tr }) {
           }}
         >
           {filtered.map((proj, i) => (
-            <AnimatedSection key={proj.title} delay={i * 0.1}>
+            <AnimatedSection key={proj.title} delay={i * 0.1} variant="scale">
               <ProjectCard proj={proj} lang={lang} tr={tr} />
             </AnimatedSection>
           ))}
@@ -89,12 +90,11 @@ function ProjectCard({ proj, lang, tr }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
-        background: "rgba(255,255,255,0.03)",
-        border: `1px solid ${
-          hovered
-            ? "rgba(167,139,250,0.3)"
-            : "rgba(255,255,255,0.06)"
-        }`,
+        background: "var(--bg-secondary)",
+        border: `1px solid ${hovered
+            ? "var(--border-color-hover)"
+            : "var(--border-color)"
+          }`,
         borderRadius: "20px",
         overflow: "hidden",
         transition: "all 0.3s",
@@ -141,13 +141,13 @@ function ProjectCard({ proj, lang, tr }) {
         >
           <span
             style={{
-              background: "rgba(167,139,250,0.2)",
+              background: "var(--bg-tertiary)",
               border:
-                "1px solid rgba(167,139,250,0.3)",
+                "1px solid var(--border-color-hover)",
               borderRadius: "6px",
               padding: "0.2rem 0.6rem",
               fontSize: "0.72rem",
-              color: "#c4b5fd",
+              color: "var(--accent-primary)",
               fontWeight: 600,
               backdropFilter: "blur(10px)",
             }}
@@ -166,9 +166,12 @@ function ProjectCard({ proj, lang, tr }) {
                 color: "#fbbf24",
                 fontWeight: 600,
                 backdropFilter: "blur(10px)",
+                display: "flex",
+                alignItems: "center",
+                gap: "0.25rem"
               }}
             >
-              ⭐ Featured
+              <Star size={12} fill="currentColor" /> Featured
             </span>
           )}
         </div>
@@ -180,9 +183,12 @@ function ProjectCard({ proj, lang, tr }) {
               color: "#10b981",
               fontWeight: 700,
               fontSize: "0.8rem",
+              display: "flex",
+              alignItems: "center",
+              gap: "0.25rem"
             }}
           >
-            📈 {proj.metrics[lang]}
+            <TrendingUp size={14} /> {proj.metrics[lang]}
           </span>
         </div>
       </div>
@@ -192,7 +198,7 @@ function ProjectCard({ proj, lang, tr }) {
           style={{
             fontWeight: 800,
             fontSize: "1.05rem",
-            color: "white",
+            color: "var(--text-primary)",
             marginBottom: "0.5rem",
           }}
         >
@@ -200,7 +206,7 @@ function ProjectCard({ proj, lang, tr }) {
         </h3>
         <p
           style={{
-            color: "rgba(255,255,255,0.6)",
+            color: "var(--text-secondary)",
             fontSize: "0.85rem",
             lineHeight: 1.6,
             marginBottom: "1rem",
@@ -220,13 +226,13 @@ function ProjectCard({ proj, lang, tr }) {
             <span
               key={tag}
               style={{
-                background: "rgba(124,58,237,0.1)",
+                background: "var(--bg-tertiary)",
                 border:
-                  "1px solid rgba(124,58,237,0.2)",
+                  "1px solid var(--border-color)",
                 borderRadius: "5px",
                 padding: "0.15rem 0.5rem",
                 fontSize: "0.72rem",
-                color: "#c4b5fd",
+                color: "var(--accent-primary)",
                 fontWeight: 600,
               }}
             >
@@ -243,14 +249,18 @@ function ProjectCard({ proj, lang, tr }) {
               padding: "0.55rem",
               borderRadius: "10px",
               background:
-                "linear-gradient(135deg, #7c3aed, #ec4899)",
+                "linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))",
               color: "white",
               textDecoration: "none",
               fontSize: "0.8rem",
               fontWeight: 700,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "0.35rem"
             }}
           >
-            ↗ {tr.projects.demo}
+            <ExternalLink size={14} /> {tr.projects.demo}
           </a>
           <a
             href={proj.code}
@@ -259,16 +269,20 @@ function ProjectCard({ proj, lang, tr }) {
               textAlign: "center",
               padding: "0.55rem",
               borderRadius: "10px",
-              background: "rgba(255,255,255,0.06)",
+              background: "var(--bg-secondary)",
               border:
-                "1px solid rgba(255,255,255,0.1)",
-              color: "white",
+                "1px solid var(--border-color)",
+              color: "var(--text-primary)",
               textDecoration: "none",
               fontSize: "0.8rem",
               fontWeight: 700,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "0.35rem"
             }}
           >
-            ⟨/⟩ {tr.projects.code}
+            <Code size={14} /> {tr.projects.code}
           </a>
         </div>
       </div>

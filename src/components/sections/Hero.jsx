@@ -7,6 +7,55 @@ import grokLogo from "../../assets/ai-logo/grok-seeklogo.png";
 import { useTypewriter } from "../../hooks/useTypewriter";
 import { Github, Linkedin, Twitter, Youtube } from "lucide-react";
 import { motion } from "framer-motion";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { Environment, Float, Sparkles } from "@react-three/drei";
+
+function Hero3DObject() {
+  const meshRef1 = React.useRef();
+  const meshRef2 = React.useRef();
+
+  useFrame((state) => {
+    const t = state.clock.getElapsedTime();
+    if (meshRef1.current) {
+      meshRef1.current.rotation.x = t * 0.2;
+      meshRef1.current.rotation.y = t * 0.3;
+    }
+    if (meshRef2.current) {
+      meshRef2.current.rotation.x = t * 0.15;
+      meshRef2.current.rotation.y = t * 0.25;
+    }
+  });
+
+  return (
+    <Float speed={2} rotationIntensity={1.5} floatIntensity={2}>
+      <group position={[1.8, 1.5, 0]}>
+        <mesh ref={meshRef1}>
+          <icosahedronGeometry args={[0.6, 0]} />
+          <meshPhysicalMaterial
+            color="#a78bfa"
+            emissive="#7c3aed"
+            emissiveIntensity={0.2}
+            wireframe={true}
+            transparent={true}
+            opacity={0.8}
+          />
+        </mesh>
+      </group>
+      <group position={[-1.8, -1.0, 0]}>
+        <mesh ref={meshRef2}>
+          <octahedronGeometry args={[0.5, 0]} />
+          <meshStandardMaterial
+            color="#ec4899"
+            roughness={0.1}
+            metalness={0.8}
+            transparent={true}
+            opacity={0.6}
+          />
+        </mesh>
+      </group>
+    </Float>
+  );
+}
 
 export function Hero({ lang, tr }) {
   const typed = useTypewriter(tr.hero.titles, 80);
@@ -142,7 +191,7 @@ export function Hero({ lang, tr }) {
 
           <p
             style={{
-              color: "rgba(255,255,255,0.6)",
+              color: "var(--text-secondary)",
               fontSize: "1.2rem",
               marginBottom: "0.5rem",
               opacity: mounted ? 1 : 0,
@@ -167,10 +216,7 @@ export function Hero({ lang, tr }) {
               transform: mounted
                 ? "translateY(0)"
                 : "translateY(20px)",
-              background:
-                "linear-gradient(135deg, #fff 30%, rgba(255,255,255,0.6))",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
+              color: "var(--text-primary)",
             }}
           >
             {tr.hero.name}
@@ -209,7 +255,7 @@ export function Hero({ lang, tr }) {
 
           <p
             style={{
-              color: "rgba(255,255,255,0.6)",
+              color: "var(--text-secondary)",
               fontSize: "1.05rem",
               lineHeight: 1.8,
               marginBottom: "2rem",
@@ -256,12 +302,12 @@ export function Hero({ lang, tr }) {
                 boxShadow: "0 0 30px rgba(124,58,237,0.4)",
               }}
               onMouseEnter={(e) =>
-                (e.target.style.transform =
-                  "translateY(-2px)")
+              (e.target.style.transform =
+                "translateY(-2px)")
               }
               onMouseLeave={(e) =>
-                (e.target.style.transform =
-                  "translateY(0)")
+              (e.target.style.transform =
+                "translateY(0)")
               }
             >
               {tr.hero.cta1} →
@@ -278,79 +324,79 @@ export function Hero({ lang, tr }) {
                 fontWeight: 700,
                 fontSize: "0.95rem",
                 background: "transparent",
-                color: "white",
+                color: "var(--text-primary)",
                 border:
-                  "1px solid rgba(255,255,255,0.2)",
+                  "1px solid var(--border-color)",
                 cursor: "pointer",
                 transition: "all 0.3s",
                 backdropFilter: "blur(10px)",
               }}
               onMouseEnter={(e) => {
-                e.target.style.borderColor = "#a78bfa";
-                e.target.style.color = "#a78bfa";
+                e.target.style.borderColor = "var(--border-color-hover)";
+                e.target.style.color = "var(--accent-primary)";
               }}
               onMouseLeave={(e) => {
                 e.target.style.borderColor =
-                  "rgba(255,255,255,0.2)";
-                e.target.style.color = "white";
+                  "var(--border-color)";
+                e.target.style.color = "var(--text-primary)";
               }}
             >
               {tr.hero.cta2}
             </button>
           </div>
 
-        <div
-          style={{
-            display: "flex",
-            gap: "1rem",
-            marginTop: "2rem",
-            opacity: mounted ? 1 : 0,
-            transition: "all 0.6s ease 0.7s",
-          }}
-        >
-          {[
-            { Icon: Github, label: "GitHub", href: "#" },
-            { Icon: Linkedin, label: "LinkedIn", href: "#" },
-            { Icon: Twitter, label: "Twitter", href: "#" },
-            { Icon: Youtube, label: "YouTube", href: "#" },
-          ].map(({ Icon, label, href }) => (
-            <a
-              key={label}
-              href={href}
-              style={{
-                width: "40px",
-                height: "40px",
-                borderRadius: "10px",
-                background: "rgba(255,255,255,0.05)",
-                border:
-                  "1px solid rgba(255,255,255,0.1)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "rgba(255,255,255,0.7)",
-                textDecoration: "none",
-                transition: "all 0.2s",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background =
-                  "rgba(167,139,250,0.2)";
-                e.currentTarget.style.borderColor =
-                  "#a78bfa";
-                e.currentTarget.style.color = "#a78bfa";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background =
-                  "rgba(255,255,255,0.05)";
-                e.currentTarget.style.borderColor =
-                  "rgba(255,255,255,0.1)";
-                e.currentTarget.style.color =
-                  "rgba(255,255,255,0.7)";
-              }}
-            >
-              <Icon size={18} />
-            </a>
-          ))}
-        </div>
+          <div
+            style={{
+              display: "flex",
+              gap: "1rem",
+              marginTop: "2rem",
+              opacity: mounted ? 1 : 0,
+              transition: "all 0.6s ease 0.7s",
+            }}
+          >
+            {[
+              { Icon: Github, label: "GitHub", href: "#" },
+              { Icon: Linkedin, label: "LinkedIn", href: "#" },
+              { Icon: Twitter, label: "Twitter", href: "#" },
+              { Icon: Youtube, label: "YouTube", href: "#" },
+            ].map(({ Icon, label, href }) => (
+              <a
+                key={label}
+                href={href}
+                style={{
+                  width: "40px",
+                  height: "40px",
+                  borderRadius: "10px",
+                  background: "var(--bg-tertiary)",
+                  border:
+                    "1px solid var(--border-color)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "var(--text-secondary)",
+                  textDecoration: "none",
+                  transition: "all 0.2s",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background =
+                    "var(--bg-secondary)";
+                  e.currentTarget.style.borderColor =
+                    "var(--border-color-hover)";
+                  e.currentTarget.style.color = "var(--accent-primary)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background =
+                    "var(--bg-tertiary)";
+                  e.currentTarget.style.borderColor =
+                    "var(--border-color)";
+                  e.currentTarget.style.color =
+                    "var(--text-secondary)";
+                }}
+              >
+                <Icon size={18} />
+              </a>
+            ))}
+          </div>
         </div>
 
         <motion.div
@@ -364,7 +410,7 @@ export function Hero({ lang, tr }) {
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
         >
           <motion.div
-            style={{ position: "relative" }}
+            style={{ position: "relative", width: "280px", height: "280px" }}
             animate={{ y: [0, -8, 0] }}
             transition={{
               duration: 6,
@@ -395,15 +441,14 @@ export function Hero({ lang, tr }) {
             />
             <div
               style={{
-                width: "280px",
-                height: "280px",
+                width: "100%",
+                height: "100%",
                 borderRadius: "50%",
                 overflow: "hidden",
-                border:
-                  "3px solid rgba(167,139,250,0.4)",
-                boxShadow:
-                  "0 0 60px rgba(124,58,237,0.3)",
+                border: "3px solid rgba(167,139,250,0.4)",
+                boxShadow: "0 0 60px rgba(124,58,237,0.3)",
                 position: "relative",
+                zIndex: 2,
               }}
             >
               <img
@@ -426,6 +471,31 @@ export function Hero({ lang, tr }) {
             </div>
             <div
               style={{
+                width: "200%",
+                height: "200%",
+                position: "absolute",
+                top: "-50%",
+                left: "-50%",
+                zIndex: 10,
+                pointerEvents: "none",
+              }}
+            >
+              <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
+                <ambientLight intensity={0.5} />
+                <directionalLight position={[10, 10, 5]} intensity={1} />
+                <Hero3DObject />
+                <Sparkles
+                  count={50}
+                  scale={4}
+                  size={2}
+                  speed={0.4}
+                  color="#fbbf24"
+                />
+                <Environment preset="city" />
+              </Canvas>
+            </div>
+            <div
+              style={{
                 position: "absolute",
                 top: "-10px",
                 right: "-20px",
@@ -436,6 +506,7 @@ export function Hero({ lang, tr }) {
                 padding: "0.5rem 0.75rem",
                 backdropFilter: "blur(10px)",
                 animation: "float 3s ease-in-out infinite",
+                zIndex: 20,
               }}
             >
               <div
@@ -469,6 +540,7 @@ export function Hero({ lang, tr }) {
                 backdropFilter: "blur(10px)",
                 animation:
                   "float 3s ease-in-out infinite 1.5s",
+                zIndex: 20,
               }}
             >
               <div
@@ -502,6 +574,7 @@ export function Hero({ lang, tr }) {
                 backdropFilter: "blur(10px)",
                 animation:
                   "float 3s ease-in-out infinite 0.8s",
+                zIndex: 20,
               }}
             >
               <div
@@ -535,6 +608,7 @@ export function Hero({ lang, tr }) {
                 backdropFilter: "blur(10px)",
                 animation:
                   "float 3s ease-in-out infinite 2s",
+                zIndex: 20,
               }}
             >
               <div
@@ -569,7 +643,7 @@ export function Hero({ lang, tr }) {
           flexDirection: "column",
           alignItems: "center",
           gap: "0.5rem",
-          color: "rgba(255,255,255,0.4)",
+          color: "var(--text-muted)",
           fontSize: "0.75rem",
         }}
       >
@@ -579,7 +653,7 @@ export function Hero({ lang, tr }) {
             width: "1px",
             height: "40px",
             background:
-              "linear-gradient(to bottom, rgba(167,139,250,0.5), transparent)",
+              "linear-gradient(to bottom, var(--accent-primary), transparent)",
             animation: "pulse 2s infinite",
           }}
         />

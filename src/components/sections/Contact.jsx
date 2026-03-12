@@ -1,6 +1,18 @@
 import React, { useState } from "react";
 import { AnimatedSection } from "../common/AnimatedSection";
 import { SectionHeader } from "../common/SectionHeader";
+import {
+  MapPin,
+  Mail,
+  Smartphone,
+  Globe,
+  Github,
+  Linkedin,
+  Twitter,
+  Youtube,
+  Send,
+  CheckCircle2,
+} from "lucide-react";
 
 export function Contact({ tr }) {
   const c = tr.contact;
@@ -21,7 +33,7 @@ export function Contact({ tr }) {
   return (
     <section
       id="contact"
-      style={{ padding: "6rem 2rem", background: "rgba(139,92,246,0.03)" }}
+      style={{ padding: "6rem 2rem", background: "var(--bg-tertiary)" }}
     >
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
         <SectionHeader title={c.title} subtitle={c.subtitle} />
@@ -37,19 +49,21 @@ export function Contact({ tr }) {
           <AnimatedSection>
             <h3
               style={{
-                color: "white",
+                color: "var(--text-primary)",
                 fontWeight: 800,
                 fontSize: "1.3rem",
                 marginBottom: "1rem",
+                fontFamily: "'Be Vietnam Pro', sans-serif"
+
               }}
             >
               {c.info}
             </h3>
             {[
-              { icon: "📍", label: "Hanoi, Vietnam" },
-              { icon: "📧", label: "dev@example.com" },
-              { icon: "📱", label: "+84 901 234 567" },
-              { icon: "🌐", label: "www.nguyendev.com" },
+              { icon: <MapPin size={20} />, label: "Hanoi, Vietnam" },
+              { icon: <Mail size={20} />, label: "linhvodanh2004@gmail.com" },
+              { icon: <Smartphone size={20} />, label: "+84 984 350 255" },
+              { icon: <Globe size={20} />, label: "www.linhphung.io.vn" },
             ].map((item) => (
               <div
                 key={item.label}
@@ -58,9 +72,9 @@ export function Contact({ tr }) {
                   alignItems: "center",
                   gap: "1rem",
                   padding: "1rem",
-                  background: "rgba(255,255,255,0.03)",
+                  background: "var(--bg-secondary)",
                   border:
-                    "1px solid rgba(255,255,255,0.06)",
+                    "1px solid var(--border-color)",
                   borderRadius: "12px",
                   marginBottom: "0.75rem",
                 }}
@@ -70,7 +84,7 @@ export function Contact({ tr }) {
                 </span>
                 <span
                   style={{
-                    color: "rgba(255,255,255,0.7)",
+                    color: "var(--text-secondary)",
                     fontSize: "0.9rem",
                   }}
                 >
@@ -81,7 +95,7 @@ export function Contact({ tr }) {
 
             <p
               style={{
-                color: "rgba(255,255,255,0.5)",
+                color: "var(--text-muted)",
                 fontSize: "0.85rem",
                 marginTop: "1.5rem",
                 marginBottom: "1rem",
@@ -91,10 +105,10 @@ export function Contact({ tr }) {
             </p>
             <div style={{ display: "flex", gap: "0.75rem" }}>
               {[
-                { n: "GitHub", i: "⟨/⟩" },
-                { n: "LinkedIn", i: "in" },
-                { n: "Twitter", i: "𝕏" },
-                { n: "YouTube", i: "▶" },
+                { n: "GitHub", i: <Github size={18} /> },
+                { n: "LinkedIn", i: <Linkedin size={18} /> },
+                { n: "Twitter", i: <Twitter size={18} /> },
+                { n: "YouTube", i: <Youtube size={18} /> },
               ].map((s) => (
                 <a
                   key={s.n}
@@ -104,13 +118,13 @@ export function Contact({ tr }) {
                     height: "44px",
                     borderRadius: "12px",
                     background:
-                      "rgba(255,255,255,0.05)",
+                      "var(--bg-secondary)",
                     border:
-                      "1px solid rgba(255,255,255,0.1)",
+                      "1px solid var(--border-color)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    color: "white",
+                    color: "var(--text-primary)",
                     textDecoration: "none",
                     fontWeight: 700,
                     fontSize: "0.9rem",
@@ -118,15 +132,17 @@ export function Contact({ tr }) {
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.background =
-                      "rgba(167,139,250,0.15)";
+                      "var(--bg-primary)";
                     e.currentTarget.style.borderColor =
-                      "#a78bfa";
+                      "var(--border-color-hover)";
+                    e.currentTarget.style.color = "var(--accent-primary)";
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.background =
-                      "rgba(255,255,255,0.05)";
+                      "var(--bg-secondary)";
                     e.currentTarget.style.borderColor =
-                      "rgba(255,255,255,0.1)";
+                      "var(--border-color)";
+                    e.currentTarget.style.color = "var(--text-primary)";
                   }}
                 >
                   {s.i}
@@ -138,9 +154,9 @@ export function Contact({ tr }) {
           <AnimatedSection delay={0.2}>
             <div
               style={{
-                background: "rgba(255,255,255,0.03)",
+                background: "var(--bg-secondary)",
                 border:
-                  "1px solid rgba(255,255,255,0.06)",
+                  "1px solid var(--border-color)",
                 borderRadius: "20px",
                 padding: "2rem",
               }}
@@ -161,7 +177,7 @@ export function Contact({ tr }) {
                     <label
                       style={{
                         display: "block",
-                        color: "rgba(255,255,255,0.6)",
+                        color: "var(--text-secondary)",
                         fontSize: "0.8rem",
                         marginBottom: "0.4rem",
                         fontWeight: 600,
@@ -182,11 +198,11 @@ export function Contact({ tr }) {
                         width: "100%",
                         padding: "0.75rem 1rem",
                         background:
-                          "rgba(255,255,255,0.05)",
+                          "var(--bg-tertiary)",
                         border:
-                          "1px solid rgba(255,255,255,0.1)",
+                          "1px solid var(--border-color)",
                         borderRadius: "10px",
-                        color: "white",
+                        color: "var(--text-primary)",
                         fontSize: "0.9rem",
                         outline: "none",
                         boxSizing: "border-box",
@@ -199,7 +215,7 @@ export function Contact({ tr }) {
                 <label
                   style={{
                     display: "block",
-                    color: "rgba(255,255,255,0.6)",
+                    color: "var(--text-secondary)",
                     fontSize: "0.8rem",
                     marginBottom: "0.4rem",
                     fontWeight: 600,
@@ -216,11 +232,11 @@ export function Contact({ tr }) {
                     width: "100%",
                     padding: "0.75rem 1rem",
                     background:
-                      "rgba(255,255,255,0.05)",
+                      "var(--bg-tertiary)",
                     border:
-                      "1px solid rgba(255,255,255,0.1)",
+                      "1px solid var(--border-color)",
                     borderRadius: "10px",
-                    color: "white",
+                    color: "var(--text-primary)",
                     fontSize: "0.9rem",
                     outline: "none",
                     boxSizing: "border-box",
@@ -231,7 +247,7 @@ export function Contact({ tr }) {
                 <label
                   style={{
                     display: "block",
-                    color: "rgba(255,255,255,0.6)",
+                    color: "var(--text-secondary)",
                     fontSize: "0.8rem",
                     marginBottom: "0.4rem",
                     fontWeight: 600,
@@ -249,11 +265,11 @@ export function Contact({ tr }) {
                     width: "100%",
                     padding: "0.75rem 1rem",
                     background:
-                      "rgba(255,255,255,0.05)",
+                      "var(--bg-tertiary)",
                     border:
-                      "1px solid rgba(255,255,255,0.1)",
+                      "1px solid var(--border-color)",
                     borderRadius: "10px",
-                    color: "white",
+                    color: "var(--text-primary)",
                     fontSize: "0.9rem",
                     outline: "none",
                     resize: "vertical",
@@ -271,16 +287,22 @@ export function Contact({ tr }) {
                   fontSize: "1rem",
                   background: sent
                     ? "linear-gradient(135deg, #10b981, #059669)"
-                    : "linear-gradient(135deg, #7c3aed, #ec4899)",
+                    : "linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))",
                   color: "white",
                   border: "none",
                   cursor: "pointer",
                   transition: "all 0.3s",
                   boxShadow:
                     "0 0 30px rgba(124,58,237,0.3)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "0.5rem",
+                  fontFamily: "'Be Vietnam Pro', sans-serif"
+
                 }}
               >
-                {sent ? "✓ Sent!" : `✉ ${c.send}`}
+                {sent ? <><CheckCircle2 size={18} /> Sent!</> : <><Send size={18} /> {c.send}</>}
               </button>
             </div>
           </AnimatedSection>

@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { Menu, X, Sun, Moon } from "lucide-react";
+import { useTheme } from "../../hooks/useTheme";
 
 export function Navbar({ lang, setLang, tr }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
   const [active, setActive] = useState("home");
 
   useEffect(() => {
@@ -31,10 +34,10 @@ export function Navbar({ lang, setLang, tr }) {
   return (
     <nav
       style={{
-        background: scrolled ? "rgba(5,5,15,0.9)" : "transparent",
+        background: scrolled ? "var(--modal-bg)" : "transparent",
         backdropFilter: scrolled ? "blur(20px)" : "none",
         borderBottom: scrolled
-          ? "1px solid rgba(139,92,246,0.2)"
+          ? "1px solid var(--border-color)"
           : "none",
         transition: "all 0.3s ease",
         position: "fixed",
@@ -85,11 +88,11 @@ export function Navbar({ lang, setLang, tr }) {
                 fontWeight: active === link ? 700 : 400,
                 color:
                   active === link
-                    ? "#a78bfa"
-                    : "rgba(255,255,255,0.7)",
+                    ? "var(--accent-primary)"
+                    : "var(--text-secondary)",
                 background:
                   active === link
-                    ? "rgba(167,139,250,0.1)"
+                    ? "var(--bg-tertiary)"
                     : "transparent",
                 border: "none",
                 cursor: "pointer",
@@ -132,17 +135,36 @@ export function Navbar({ lang, setLang, tr }) {
             {lang === "vi" ? "VI" : "EN"}
           </button>
           <button
-            onClick={() => setMenuOpen(!menuOpen)}
+            onClick={toggleTheme}
+            style={{
+              background: "var(--bg-tertiary)",
+              border: "1px solid var(--border-color)",
+              color: "var(--text-primary)",
+              borderRadius: "50%",
+              width: "36px",
+              height: "36px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              transition: "all 0.3s ease",
+            }}
+          >
+            {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+
+          <button
             className="show-mobile"
+            onClick={() => setMenuOpen(!menuOpen)}
             style={{
               background: "none",
               border: "none",
-              color: "white",
+              color: "var(--text-primary)",
               fontSize: "1.5rem",
               cursor: "pointer",
             }}
           >
-            {menuOpen ? "✕" : "☰"}
+            {menuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
@@ -150,9 +172,9 @@ export function Navbar({ lang, setLang, tr }) {
       {menuOpen && (
         <div
           style={{
-            background: "rgba(5,5,15,0.98)",
+            background: "var(--bg-primary)",
             padding: "1rem 2rem 2rem",
-            borderTop: "1px solid rgba(139,92,246,0.2)",
+            borderTop: "1px solid var(--border-color)",
           }}
         >
           {navLinks.map((link) => (
@@ -164,11 +186,11 @@ export function Navbar({ lang, setLang, tr }) {
                 width: "100%",
                 textAlign: "left",
                 padding: "0.75rem 0",
-                color: "rgba(255,255,255,0.8)",
+                color: "var(--text-secondary)",
                 background: "none",
                 border: "none",
                 borderBottom:
-                  "1px solid rgba(255,255,255,0.05)",
+                  "1px solid var(--border-color)",
                 fontSize: "1rem",
                 cursor: "pointer",
                 textTransform: "capitalize",

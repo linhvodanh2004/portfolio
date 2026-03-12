@@ -6,9 +6,9 @@ export function Stats({ tr }) {
     <section
       style={{
         padding: "2rem",
-        background: "rgba(139,92,246,0.05)",
-        borderTop: "1px solid rgba(139,92,246,0.1)",
-        borderBottom: "1px solid rgba(139,92,246,0.1)",
+        background: "var(--bg-secondary)",
+        borderTop: "1px solid var(--border-color)",
+        borderBottom: "1px solid var(--border-color)",
       }}
     >
       <div
@@ -22,7 +22,7 @@ export function Stats({ tr }) {
         className="stats-grid"
       >
         {tr.stats.map((s, i) => (
-          <AnimatedSection key={s.label} delay={i * 0.1}>
+          <AnimatedSection key={s.label} delay={i * 0.1} variant="scale">
             <div style={{ textAlign: "center" }}>
               <div
                 style={{
@@ -38,7 +38,7 @@ export function Stats({ tr }) {
               </div>
               <div
                 style={{
-                  color: "rgba(255,255,255,0.5)",
+                  color: "var(--text-secondary)",
                   fontSize: "0.85rem",
                   marginTop: "0.25rem",
                 }}

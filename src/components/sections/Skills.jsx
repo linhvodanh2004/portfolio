@@ -14,15 +14,15 @@ export function Skills({ tr }) {
     activeCat === "All" || activeCat === "Tất cả"
       ? skillsData
       : skillsData.filter(
-          (s) => s.cat === catKeys[cats.indexOf(activeCat)]
-        );
+        (s) => s.cat === catKeys[cats.indexOf(activeCat)]
+      );
 
   return (
     <section
       id="skills"
       style={{
         padding: "6rem 2rem",
-        background: "rgba(139,92,246,0.03)",
+        background: "var(--bg-tertiary)",
       }}
     >
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
@@ -52,12 +52,12 @@ export function Skills({ tr }) {
                 border:
                   activeCat === cat
                     ? "none"
-                    : "1px solid rgba(255,255,255,0.1)",
+                    : "1px solid var(--border-color)",
                 background:
                   activeCat === cat
-                    ? "linear-gradient(135deg, #7c3aed, #ec4899)"
-                    : "rgba(255,255,255,0.05)",
-                color: "white",
+                    ? "linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))"
+                    : "var(--bg-tertiary)",
+                color: activeCat === cat ? "#ffffff" : "var(--text-primary)",
                 cursor: "pointer",
                 transition: "all 0.2s",
               }}
@@ -76,7 +76,7 @@ export function Skills({ tr }) {
           }}
         >
           {filtered.map((skill, i) => (
-            <AnimatedSection key={skill.name} delay={i * 0.05}>
+            <AnimatedSection key={skill.name} delay={i * 0.05} variant="fadeUp">
               <SkillCard skill={skill} />
             </AnimatedSection>
           ))}
@@ -97,13 +97,12 @@ function SkillCard({ skill }) {
       onMouseLeave={() => setHovered(false)}
       style={{
         background: hovered
-          ? "rgba(167,139,250,0.1)"
-          : "rgba(255,255,255,0.03)",
-        border: `1px solid ${
-          hovered
-            ? "rgba(167,139,250,0.4)"
-            : "rgba(255,255,255,0.06)"
-        }`,
+          ? "var(--bg-secondary)"
+          : "var(--bg-primary)",
+        border: `1px solid ${hovered
+            ? "var(--border-color-hover)"
+            : "var(--border-color)"
+          }`,
         borderRadius: "16px",
         padding: "1.25rem",
         transition: "all 0.3s",
@@ -125,7 +124,7 @@ function SkillCard({ skill }) {
       <div
         style={{
           fontWeight: 700,
-          color: "white",
+          color: "var(--text-primary)",
           fontSize: "0.9rem",
           marginBottom: "0.75rem",
         }}
@@ -136,7 +135,7 @@ function SkillCard({ skill }) {
         style={{
           height: "4px",
           borderRadius: "2px",
-          background: "rgba(255,255,255,0.08)",
+          background: "var(--border-color)",
           overflow: "hidden",
         }}
       >
@@ -145,7 +144,7 @@ function SkillCard({ skill }) {
             height: "100%",
             borderRadius: "2px",
             background:
-              "linear-gradient(90deg, #7c3aed, #ec4899)",
+              "linear-gradient(90deg, var(--accent-primary), var(--accent-secondary))",
             width: inView ? `${skill.level}%` : "0%",
             transition: "width 1.2s ease 0.3s",
           }}
@@ -153,7 +152,7 @@ function SkillCard({ skill }) {
       </div>
       <div
         style={{
-          color: "#a78bfa",
+          color: "var(--accent-primary)",
           fontSize: "0.75rem",
           fontWeight: 700,
           marginTop: "0.4rem",

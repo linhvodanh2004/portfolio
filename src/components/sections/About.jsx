@@ -50,9 +50,9 @@ export function About({ lang, tr, onOpenCv }) {
                   position: "absolute",
                   bottom: "1.5rem",
                   left: "1.5rem",
-                  background: "rgba(5,5,15,0.8)",
+                  background: "var(--bg-primary)",
                   border:
-                    "1px solid rgba(167,139,250,0.3)",
+                    "1px solid var(--border-color-hover)",
                   borderRadius: "16px",
                   padding: "1rem 1.5rem",
                   backdropFilter: "blur(20px)",
@@ -70,7 +70,7 @@ export function About({ lang, tr, onOpenCv }) {
                 </div>
                 <div
                   style={{
-                    color: "rgba(255,255,255,0.6)",
+                    color: "var(--text-secondary)",
                     fontSize: "0.8rem",
                   }}
                 >
@@ -85,7 +85,7 @@ export function About({ lang, tr, onOpenCv }) {
           <AnimatedSection delay={0.2}>
             <p
               style={{
-                color: "rgba(255,255,255,0.75)",
+                color: "var(--text-secondary)",
                 lineHeight: 1.9,
                 marginBottom: "1.25rem",
               }}
@@ -94,7 +94,7 @@ export function About({ lang, tr, onOpenCv }) {
             </p>
             <p
               style={{
-                color: "rgba(255,255,255,0.75)",
+                color: "var(--text-secondary)",
                 lineHeight: 1.9,
                 marginBottom: "1.25rem",
               }}
@@ -103,7 +103,7 @@ export function About({ lang, tr, onOpenCv }) {
             </p>
             <p
               style={{
-                color: "rgba(255,255,255,0.75)",
+                color: "var(--text-secondary)",
                 lineHeight: 1.9,
                 marginBottom: "2rem",
               }}
@@ -137,7 +137,7 @@ export function About({ lang, tr, onOpenCv }) {
                   </span>
                   <span
                     style={{
-                      color: "rgba(255,255,255,0.7)",
+                      color: "var(--text-secondary)",
                       fontSize: "0.85rem",
                     }}
                   >

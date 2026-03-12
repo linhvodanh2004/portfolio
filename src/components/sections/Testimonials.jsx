@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { testimonials } from "../../data/testimonials";
 import { AnimatedSection } from "../common/AnimatedSection";
 import { SectionHeader } from "../common/SectionHeader";
+import { Quote, Star } from "lucide-react";
 
 export function Testimonials({ lang, tr }) {
   const [active, setActive] = useState(0);
@@ -22,7 +23,7 @@ export function Testimonials({ lang, tr }) {
       id="testimonials"
       style={{
         padding: "6rem 2rem",
-        background: "rgba(139,92,246,0.03)",
+        background: "var(--bg-tertiary)",
         overflow: "hidden",
       }}
     >
@@ -38,7 +39,7 @@ export function Testimonials({ lang, tr }) {
           subtitle={tr.testimonials.subtitle}
         />
 
-        <AnimatedSection>
+        <AnimatedSection variant="scale">
           <div
             style={{
               perspective: "1000px",
@@ -87,42 +88,32 @@ export function Testimonials({ lang, tr }) {
                   >
                     <div
                       style={{
-                        background: "rgba(255,255,255,0.03)",
+                        background: "var(--bg-secondary)",
                         border:
-                          "1px solid rgba(255,255,255,0.06)",
+                          "1px solid var(--border-color)",
                         borderRadius: "24px",
                         padding: "2.5rem",
                         textAlign: "left",
                         width: "100%",
                         backdropFilter: "blur(10px)",
                         boxShadow: isActive
-                          ? "0 20px 40px rgba(0,0,0,0.3), inset 0 0 0 1px rgba(167,139,250,0.4)"
+                          ? "0 20px 40px rgba(0,0,0,0.3), inset 0 0 0 1px var(--border-color-hover)"
                           : "none",
                         transition: "all 0.5s",
                       }}
                     >
                       <div
                         style={{
-                          color: "rgba(167,139,250,0.8)",
+                          color: "var(--accent-primary)",
                           marginBottom: "1.5rem",
                         }}
                       >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="currentColor"
-                          viewBox="0 0 24 24"
-                          style={{
-                            width: "2rem",
-                            height: "2rem",
-                          }}
-                        >
-                          <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                        </svg>
+                        <Quote size={32} fill="currentColor" />
                       </div>
 
                       <p
                         style={{
-                          color: "rgba(255,255,255,0.9)",
+                          color: "var(--text-primary)",
                           fontSize: "1.05rem",
                           lineHeight: 1.8,
                           fontStyle: "italic",
@@ -141,7 +132,7 @@ export function Testimonials({ lang, tr }) {
                           gap: "1rem",
                           paddingTop: "1.25rem",
                           borderTop:
-                            "1px solid rgba(255,255,255,0.1)",
+                            "1px solid var(--border-color)",
                         }}
                       >
                         <img
@@ -161,7 +152,7 @@ export function Testimonials({ lang, tr }) {
                         <div>
                           <div
                             style={{
-                              color: "white",
+                              color: "var(--text-primary)",
                               fontWeight: 700,
                               fontSize: "1rem",
                             }}
@@ -170,7 +161,7 @@ export function Testimonials({ lang, tr }) {
                           </div>
                           <div
                             style={{
-                              color: "#a78bfa",
+                              color: "var(--text-secondary)",
                               fontSize: "0.85rem",
                               fontWeight: 600,
                             }}
@@ -187,19 +178,12 @@ export function Testimonials({ lang, tr }) {
                         >
                           {Array.from({ length: test.rating }).map(
                             (_, j) => (
-                              <svg
+                              <Star
                                 key={j}
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="currentColor"
-                                viewBox="0 0 24 24"
-                                style={{
-                                  width: "1rem",
-                                  height: "1rem",
-                                  color: "#fbbf24",
-                                }}
-                              >
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                              </svg>
+                                size={16}
+                                color="#fbbf24"
+                                fill="#fbbf24"
+                              />
                             )
                           )}
                         </div>
@@ -230,8 +214,8 @@ export function Testimonials({ lang, tr }) {
                 borderRadius: "5px",
                 background:
                   i === active
-                    ? "linear-gradient(90deg, #7c3aed, #ec4899)"
-                    : "rgba(255,255,255,0.2)",
+                    ? "linear-gradient(90deg, var(--accent-primary), var(--accent-secondary))"
+                    : "var(--border-color-hover)",
                 border: "none",
                 cursor: "pointer",
                 transition:

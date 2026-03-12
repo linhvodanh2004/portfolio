@@ -21,10 +21,10 @@ export function Experience({ lang, tr, onOpenPdf }) {
             gap: "0.5rem",
             justifyContent: "center",
             marginBottom: "3rem",
-            background: "rgba(255,255,255,0.03)",
+            background: "var(--bg-secondary)",
             borderRadius: "12px",
             padding: "0.25rem",
-            border: "1px solid rgba(255,255,255,0.06)",
+            border: "1px solid var(--border-color)",
           }}
         >
           {tabs.map((t, i) => (
@@ -39,9 +39,9 @@ export function Experience({ lang, tr, onOpenPdf }) {
                 fontWeight: 600,
                 background:
                   tab === i
-                    ? "linear-gradient(135deg, #7c3aed, #ec4899)"
+                    ? "linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))"
                     : "transparent",
-                color: "white",
+                color: tab === i ? "#ffffff" : "var(--text-primary)", // sửa ở đây
                 border: "none",
                 cursor: "pointer",
                 transition: "all 0.3s",
@@ -62,11 +62,11 @@ export function Experience({ lang, tr, onOpenPdf }) {
                 bottom: 0,
                 width: "2px",
                 background:
-                  "linear-gradient(to bottom, #7c3aed, #ec4899, transparent)",
+                  "linear-gradient(to bottom, var(--accent-primary), var(--accent-secondary), transparent)",
               }}
             />
             {workExp.map((exp, i) => (
-              <AnimatedSection key={exp.company} delay={i * 0.15}>
+              <AnimatedSection key={exp.company} delay={i * 0.15} variant="fadeRight">
                 <div
                   style={{
                     display: "flex",
@@ -82,7 +82,7 @@ export function Experience({ lang, tr, onOpenPdf }) {
                       borderRadius: "12px",
                       overflow: "hidden",
                       border:
-                        "2px solid rgba(167,139,250,0.3)",
+                        "2px solid var(--border-color-hover)",
                       position: "relative",
                       zIndex: 1,
                     }}
@@ -99,9 +99,9 @@ export function Experience({ lang, tr, onOpenPdf }) {
                   <div
                     style={{
                       flex: 1,
-                      background: "rgba(255,255,255,0.03)",
+                      background: "var(--bg-secondary)",
                       border:
-                        "1px solid rgba(255,255,255,0.06)",
+                        "1px solid var(--border-color)",
                       borderRadius: "16px",
                       padding: "1.5rem",
                     }}
@@ -120,14 +120,14 @@ export function Experience({ lang, tr, onOpenPdf }) {
                           style={{
                             fontWeight: 800,
                             fontSize: "1.1rem",
-                            color: "white",
+                            color: "var(--text-primary)",
                           }}
                         >
                           {exp.role[lang]}
                         </h3>
                         <p
                           style={{
-                            color: "#a78bfa",
+                            color: "var(--accent-primary)",
                             fontWeight: 600,
                             fontSize: "0.9rem",
                           }}
@@ -138,12 +138,12 @@ export function Experience({ lang, tr, onOpenPdf }) {
                       <span
                         style={{
                           background:
-                            "rgba(167,139,250,0.1)",
+                            "var(--bg-tertiary)",
                           border:
-                            "1px solid rgba(167,139,250,0.2)",
+                            "1px solid var(--border-color-hover)",
                           borderRadius: "8px",
                           padding: "0.3rem 0.75rem",
-                          color: "#a78bfa",
+                          color: "var(--accent-primary)",
                           fontSize: "0.8rem",
                           fontWeight: 600,
                           height: "fit-content",
@@ -154,7 +154,7 @@ export function Experience({ lang, tr, onOpenPdf }) {
                     </div>
                     <ul
                       style={{
-                        color: "rgba(255,255,255,0.65)",
+                        color: "var(--text-secondary)",
                         lineHeight: 1.7,
                         fontSize: "0.9rem",
                         marginBottom: "1rem",
@@ -185,13 +185,13 @@ export function Experience({ lang, tr, onOpenPdf }) {
                           key={tag}
                           style={{
                             background:
-                              "rgba(124,58,237,0.15)",
+                              "var(--bg-tertiary)",
                             border:
-                              "1px solid rgba(124,58,237,0.2)",
+                              "1px solid var(--border-color)",
                             borderRadius: "6px",
                             padding: "0.2rem 0.6rem",
                             fontSize: "0.75rem",
-                            color: "#c4b5fd",
+                            color: "var(--accent-primary)",
                             fontWeight: 600,
                           }}
                         >
@@ -212,15 +212,16 @@ export function Experience({ lang, tr, onOpenPdf }) {
               <AnimatedSection
                 key={edu.school.en}
                 delay={i * 0.15}
+                variant="fadeRight"
               >
                 <div
                   style={{
                     display: "flex",
                     gap: "1.5rem",
                     marginBottom: "1.5rem",
-                    background: "rgba(255,255,255,0.03)",
+                    background: "var(--bg-secondary)",
                     border:
-                      "1px solid rgba(255,255,255,0.06)",
+                      "1px solid var(--border-color)",
                     borderRadius: "16px",
                     padding: "1.5rem",
                   }}
@@ -248,7 +249,7 @@ export function Experience({ lang, tr, onOpenPdf }) {
                         <h3
                           style={{
                             fontWeight: 800,
-                            color: "white",
+                            color: "var(--text-primary)",
                             fontSize: "1rem",
                           }}
                         >
@@ -256,7 +257,7 @@ export function Experience({ lang, tr, onOpenPdf }) {
                         </h3>
                         <p
                           style={{
-                            color: "#a78bfa",
+                            color: "var(--accent-primary)",
                             fontSize: "0.9rem",
                             fontWeight: 600,
                           }}
@@ -268,12 +269,12 @@ export function Experience({ lang, tr, onOpenPdf }) {
                         <span
                           style={{
                             background:
-                              "rgba(167,139,250,0.1)",
+                              "var(--bg-tertiary)",
                             border:
-                              "1px solid rgba(167,139,250,0.2)",
+                              "1px solid var(--border-color-hover)",
                             borderRadius: "8px",
                             padding: "0.3rem 0.75rem",
-                            color: "#a78bfa",
+                            color: "var(--accent-primary)",
                             fontSize: "0.8rem",
                             fontWeight: 600,
                           }}
@@ -296,7 +297,7 @@ export function Experience({ lang, tr, onOpenPdf }) {
                     </div>
                     <ul
                       style={{
-                        color: "rgba(255,255,255,0.65)",
+                        color: "var(--text-secondary)",
                         fontSize: "0.9rem",
                         lineHeight: 1.7,
                         marginTop: "0.5rem",
@@ -335,12 +336,13 @@ export function Experience({ lang, tr, onOpenPdf }) {
               <AnimatedSection
                 key={cert.name}
                 delay={i * 0.1}
+                variant="scale"
               >
                 <div
                   style={{
-                    background: "rgba(255,255,255,0.03)",
+                    background: "var(--bg-secondary)",
                     border:
-                      "1px solid rgba(255,255,255,0.06)",
+                      "1px solid var(--border-color)",
                     borderRadius: "16px",
                     padding: "1.25rem",
                     textAlign: "center",
@@ -349,13 +351,13 @@ export function Experience({ lang, tr, onOpenPdf }) {
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.borderColor =
-                      "rgba(167,139,250,0.3)";
+                      "var(--border-color-hover)";
                     e.currentTarget.style.transform =
                       "translateY(-4px)";
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.borderColor =
-                      "rgba(255,255,255,0.06)";
+                      "var(--border-color)";
                     e.currentTarget.style.transform =
                       "translateY(0)";
                   }}
@@ -376,7 +378,7 @@ export function Experience({ lang, tr, onOpenPdf }) {
                   />
                   <h4
                     style={{
-                      color: "white",
+                      color: "var(--text-primary)",
                       fontWeight: 700,
                       fontSize: "0.85rem",
                       marginBottom: "0.25rem",
@@ -387,7 +389,7 @@ export function Experience({ lang, tr, onOpenPdf }) {
                   </h4>
                   <p
                     style={{
-                      color: "#a78bfa",
+                      color: "var(--accent-primary)",
                       fontSize: "0.78rem",
                     }}
                   >

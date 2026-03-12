@@ -63,12 +63,11 @@ function ServiceCard({ svc, lang }) {
       style={{
         background: hovered
           ? "linear-gradient(135deg, rgba(124,58,237,0.15), rgba(236,72,153,0.08))"
-          : "rgba(255,255,255,0.03)",
-        border: `1px solid ${
-          hovered
-            ? "rgba(167,139,250,0.3)"
-            : "rgba(255,255,255,0.06)"
-        }`,
+          : "var(--bg-secondary)",
+        border: `1px solid ${hovered
+          ? "var(--border-color-hover)"
+          : "var(--border-color)"
+          }`,
         borderRadius: "20px",
         padding: "2rem",
         transition: "all 0.3s",
@@ -76,13 +75,13 @@ function ServiceCard({ svc, lang }) {
         transform: hovered ? "translateY(-4px)" : "translateY(0)",
       }}
     >
-      <div style={{ marginBottom: "1rem", color: "#a78bfa" }}>
+      <div style={{ marginBottom: "1rem", color: "var(--accent-primary)" }}>
         <Icon size={28} />
       </div>
       <h3
         style={{
           fontWeight: 800,
-          color: "white",
+          color: "var(--text-primary)",
           fontSize: "1rem",
           marginBottom: "0.5rem",
         }}
@@ -91,7 +90,7 @@ function ServiceCard({ svc, lang }) {
       </h3>
       <p
         style={{
-          color: "rgba(255,255,255,0.6)",
+          color: "var(--text-secondary)",
           fontSize: "0.85rem",
           lineHeight: 1.7,
           marginBottom: "1.25rem",
@@ -99,11 +98,13 @@ function ServiceCard({ svc, lang }) {
       >
         {svc.desc[lang]}
       </p>
+      {/* use a vietnamese-friendly font family */}
       <div
         style={{
-          color: "#a78bfa",
+          color: "var(--accent-primary)",
           fontWeight: 800,
           fontSize: "0.9rem",
+          fontFamily: "'Be Vietnam Pro', sans-serif"
         }}
       >
         {svc.price[lang]}

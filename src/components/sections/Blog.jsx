@@ -20,7 +20,7 @@ export function Blog({ lang, tr }) {
           }}
         >
           {blogPosts.map((post, i) => (
-            <AnimatedSection key={post.title.en} delay={i * 0.1}>
+            <AnimatedSection key={post.title.en} delay={i * 0.1} variant="scale">
               <BlogCard post={post} lang={lang} tr={tr} />
             </AnimatedSection>
           ))}
@@ -38,12 +38,11 @@ function BlogCard({ post, lang, tr }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
-        background: "rgba(255,255,255,0.03)",
-        border: `1px solid ${
-          hovered
-            ? "rgba(167,139,250,0.3)"
-            : "rgba(255,255,255,0.06)"
-        }`,
+        background: "var(--bg-secondary)",
+        border: `1px solid ${hovered
+          ? "var(--border-color-hover)"
+          : "var(--border-color)"
+          }`,
         borderRadius: "20px",
         overflow: "hidden",
         transition: "all 0.3s",
@@ -74,13 +73,13 @@ function BlogCard({ post, lang, tr }) {
         >
           <span
             style={{
-              background: "rgba(167,139,250,0.1)",
+              background: "var(--bg-tertiary)",
               border:
-                "1px solid rgba(167,139,250,0.2)",
+                "1px solid var(--border-color)",
               borderRadius: "6px",
               padding: "0.2rem 0.6rem",
               fontSize: "0.72rem",
-              color: "#a78bfa",
+              color: "var(--accent-primary)",
               fontWeight: 700,
             }}
           >
@@ -88,7 +87,7 @@ function BlogCard({ post, lang, tr }) {
           </span>
           <span
             style={{
-              color: "rgba(255,255,255,0.4)",
+              color: "var(--text-muted)",
               fontSize: "0.78rem",
             }}
           >
@@ -98,17 +97,18 @@ function BlogCard({ post, lang, tr }) {
         <h3
           style={{
             fontWeight: 800,
-            color: "white",
+            color: "var(--text-primary)",
             fontSize: "0.95rem",
             lineHeight: 1.5,
             marginBottom: "0.6rem",
+            fontFamily: "'Be Vietnam Pro', sans-serif"
           }}
         >
           {post.title[lang]}
         </h3>
         <p
           style={{
-            color: "rgba(255,255,255,0.55)",
+            color: "var(--text-secondary)",
             fontSize: "0.83rem",
             lineHeight: 1.6,
             marginBottom: "1rem",
@@ -134,11 +134,11 @@ function BlogCard({ post, lang, tr }) {
               <span
                 key={tag}
                 style={{
-                  background: "rgba(124,58,237,0.1)",
+                  background: "var(--bg-tertiary)",
                   borderRadius: "4px",
                   padding: "0.15rem 0.4rem",
                   fontSize: "0.7rem",
-                  color: "#c4b5fd",
+                  color: "var(--accent-primary)",
                 }}
               >
                 {tag}
@@ -147,7 +147,7 @@ function BlogCard({ post, lang, tr }) {
           </div>
           <span
             style={{
-              color: "#a78bfa",
+              color: "var(--accent-primary)",
               fontSize: "0.83rem",
               fontWeight: 700,
             }}
