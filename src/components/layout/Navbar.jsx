@@ -20,8 +20,6 @@ export function Navbar({ lang, setLang, tr }) {
     "skills",
     "experience",
     "projects",
-    "services",
-    "blog",
     "contact",
   ];
 

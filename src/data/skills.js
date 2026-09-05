@@ -10,13 +10,17 @@ export const skillsData = [
   { name: "JavaScript", level: 70, cat: "Frontend", icon: "js" },
   { name: "Angular", level: 70, cat: "Frontend", icon: "angular17" },
   // Backend
+  { name: "Java", level: 80, cat: "Backend", icon: "java" },
+  { name: "C#", level: 75, cat: "Backend", icon: "csharp" },
   { name: "Thymeleaf", level: 80, cat: "Backend", icon: "thymeleaf" },
   { name: "Swagger", level: 80, cat: "Backend", icon: "swagger" },
   { name: "Spring Boot", level: 80, cat: "Backend", icon: "spring" },
   { name: ".NET", level: 80, cat: "Backend", icon: "netcore" },
   { name: "Node.js", level: 70, cat: "Backend", icon: "nodejs" },
   { name: "NestJS", level: 70, cat: "Backend", icon: "nestjs" },
+  { name: "Socket.IO", level: 60, cat: "Backend", icon: "socketio" },
   // DevOps
+  { name: "Playwright", level: 65, cat: "DevOps", icon: "playwright" },
   { name: "Vercel", level: 75, cat: "DevOps", icon: "vercel" },
   { name: "Render", level: 75, cat: "DevOps", icon: "render" },
   { name: "Railway", level: 75, cat: "DevOps", icon: "railway" },

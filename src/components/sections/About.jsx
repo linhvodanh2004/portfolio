@@ -1,8 +1,8 @@
 import React from "react";
 import { AnimatedSection } from "../common/AnimatedSection";
 import { SectionHeader } from "../common/SectionHeader";
-
-export function About({ lang, tr, onOpenCv }) {
+import collab from "../../assets/about/collab.png";
+export function About({ tr, onOpenCv }) {
   const a = tr.about;
 
   return (
@@ -28,7 +28,7 @@ export function About({ lang, tr, onOpenCv }) {
                 }}
               >
                 <img
-                  src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&q=80"
+                  src={collab}
                   alt="about"
                   style={{
                     width: "100%",
@@ -66,7 +66,7 @@ export function About({ lang, tr, onOpenCv }) {
                     color: "#a78bfa",
                   }}
                 >
-                  5+
+                  {a.badge.value}
                 </div>
                 <div
                   style={{
@@ -74,9 +74,7 @@ export function About({ lang, tr, onOpenCv }) {
                     fontSize: "0.8rem",
                   }}
                 >
-                  {lang === "vi"
-                    ? "Năm kinh nghiệm"
-                    : "Years of Experience"}
+                  {a.badge.label}
                 </div>
               </div>
             </div>

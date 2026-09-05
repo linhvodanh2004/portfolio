@@ -10,16 +10,14 @@ import { About } from "./components/sections/About";
 import { Skills } from "./components/sections/Skills";
 import { Experience } from "./components/sections/Experience";
 import { Projects } from "./components/sections/Projects";
-import { Services } from "./components/sections/Services";
 import { Testimonials } from "./components/sections/Testimonials";
-import { Blog } from "./components/sections/Blog";
 import { Contact } from "./components/sections/Contact";
 import { PdfViewerModal } from "./components/common/PdfViewerModal";
 
 const t = translations;
 
 export default function Portfolio() {
-  const [lang, setLang] = useState("vi");
+  const [lang, setLang] = useState("en");
   const [isCvOpen, setIsCvOpen] = useState(false);
   const [activePdfUrl, setActivePdfUrl] = useState(null);
   const [activePdfTitle, setActivePdfTitle] = useState(null);
@@ -104,7 +102,6 @@ export default function Portfolio() {
           .about-grid { grid-template-columns: 1fr !important; }
           .about-grid > div:first-child { display: none; }
           .info-grid-mobile { grid-template-columns: 1fr !important; }
-          .contact-grid { grid-template-columns: 1fr !important; }
           .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
           .hidden-mobile { display: none !important; }
           .show-mobile { display: flex !important; }
@@ -115,17 +112,14 @@ export default function Portfolio() {
       <Hero lang={lang} tr={tr} />
       <Stats tr={tr} />
       <About
-        lang={lang}
         tr={tr}
         onOpenCv={() => handleOpenPdf(resumePdf, tr.about.cvTitle)}
       />
       <Skills tr={tr} />
       <Experience lang={lang} tr={tr} onOpenPdf={handleOpenPdf} />
       <Projects lang={lang} tr={tr} />
-      <Services lang={lang} tr={tr} />
       <Testimonials lang={lang} tr={tr} />
-      <Blog lang={lang} tr={tr} />
-      <Contact tr={tr} />
+      <Contact lang={lang} tr={tr} />
       <Footer tr={tr} />
       <PdfViewerModal
         isOpen={isCvOpen}

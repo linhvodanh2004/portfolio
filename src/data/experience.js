@@ -7,29 +7,30 @@ import certWebDesign from "../assets/certification/web-design-cert.pdf";
 
 export const workExp = [
   {
-    role: { vi: "Thực Tập Sinh Java", en: "Java Intern" },
+    role: { vi: "Java Trainee", en: "Java Trainee" },
     company: "FPT Software Academy",
     period: "05/2025 - 08/2025",
     location: "Hà Nội",
     desc: {
       vi: [
-        "Dẫn dắt team 5 người xây dựng nền tảng SaaS phục vụ hơn 100K người dùng.",
-        "Tối ưu performance giảm 40% load time.",
+        "Hoàn thành chương trình đào tạo phát triển phần mềm chuyên sâu theo chuẩn doanh nghiệp.",
+        "Xây dựng một dự án web mô phỏng, áp dụng kiến thức về Spring Framework và thiết kế cơ sở dữ liệu.",
+        "Phối hợp cùng các trainee khác trong môi trường Agile mô phỏng, dùng Git/GitHub để quản lý phiên bản mã nguồn và Jira để theo dõi công việc, lập kế hoạch sprint.",
       ],
       en: [
-        "Led a 5-person team building a SaaS platform serving 100K+ users.",
-        "Optimized performance reducing load time by 40%.",
+        "Completed an intensive, enterprise-standard software development training program.",
+        "Built a simulated web project applying knowledge of the Spring Framework and database design.",
+        "Collaborated with fellow trainees in a simulated Agile environment, using Git/GitHub for source control and Jira for task tracking and sprint planning.",
       ],
     },
     tags: [
-      "Thmeleaf",
+      "Java",
       "Spring Boot",
+      "Thymeleaf",
       "MySQL",
-      "AI Studio",
+      "Git/GitHub",
       "Jira",
-      "Git",
-      "Gitlab",
-      "HTML/CSS/Javascript",
+      "Agile",
     ],
     logo: fsaExperience,
   },
@@ -38,22 +39,20 @@ export const workExp = [
 export const education = [
   {
     degree: {
-      vi: "Cử nhân Kỹ Thuật Phần Mềm",
-      en: "Bachelor of Software Engineering",
+      vi: "Cử nhân Kỹ thuật Phần mềm",
+      en: "Bachelor in Software Engineering",
     },
     school: { vi: "Đại học FPT", en: "FPT University" },
     period: "2022 - 2026",
-    gpa: "3.0/4.0",
+    gpa: "3.2/4.0",
     desc: {
       vi: [
         "Chuyên ngành Kỹ thuật phần mềm.",
-        "Tốt nghiệp xuất sắc.",
-        "Đồ án tốt nghiệp về AI-powered recommendation system.",
+        "Đồ án tốt nghiệp ITSeek — nền tảng tuyển dụng IT tích hợp AI (Spring Boot, Angular, Gemini).",
       ],
       en: [
         "Software Engineering major.",
-        "Graduated with honors.",
-        "Thesis on AI-powered recommendation systems.",
+        "Capstone project ITSeek — an AI-powered IT recruitment platform (Spring Boot, Angular, Gemini).",
       ],
     },
     logo: fptuEducation,

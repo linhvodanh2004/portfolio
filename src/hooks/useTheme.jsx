@@ -1,26 +1,35 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 
 const ThemeContext = createContext();
 
-export function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState("dark"); // Default dark for current aesthetic
+const STORAGE_KEY = "portfolio-theme";
 
-  useEffect(() => {
-    // Optionally read from local storage or OS preference
-    const savedTheme = localStorage.getItem("portfolio-theme");
-    if (savedTheme) {
-      setTheme(savedTheme);
-    } else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
-       // Only respect light mode if saved theme isn't present
-       // setTheme("light"); // We'll keep default dark for now to avoid jump
-    }
-  }, []);
+/**
+ * Mặc định là dark. Lựa chọn đã lưu được đọc ngay khi khởi tạo state
+ * (không qua useEffect) để trang không nháy sai theme một nhịp lúc load.
+ */
+function readInitialTheme() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved === "dark" || saved === "light") return saved;
+  } catch {
+    // trình duyệt chặn localStorage (private mode) -> dùng mặc định
+  }
+  return "dark";
+}
+
+export function ThemeProvider({ children }) {
+  const [theme, setTheme] = useState(readInitialTheme);
 
   const toggleTheme = () => {
     setTheme((prev) => {
-      const newTheme = prev === "dark" ? "light" : "dark";
-      localStorage.setItem("portfolio-theme", newTheme);
-      return newTheme;
+      const next = prev === "dark" ? "light" : "dark";
+      try {
+        localStorage.setItem(STORAGE_KEY, next);
+      } catch {
+        // không lưu được thì vẫn đổi theme cho phiên hiện tại
+      }
+      return next;
     });
   };
 
@@ -31,4 +40,5 @@ export function ThemeProvider({ children }) {
   );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useTheme = () => useContext(ThemeContext);

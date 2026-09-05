@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
-import avatar from "../../assets/linhphung_avatar.png";
+import avatar from "../../assets/avatar.png";
 import chatGptLogo from "../../assets/ai-logo/chatgpt-seeklogo.png";
 import claudeLogo from "../../assets/ai-logo/claude-seeklogo.png";
 import geminiLogo from "../../assets/ai-logo/google-gemini-icon-seeklogo.png";
 import grokLogo from "../../assets/ai-logo/grok-seeklogo.png";
 import { useTypewriter } from "../../hooks/useTypewriter";
-import { Github, Linkedin, Twitter, Youtube } from "lucide-react";
+import { Github, Linkedin, Facebook } from "lucide-react";
+import { socialLinks } from "../../data/social";
 import { motion } from "framer-motion";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Environment, Float, Sparkles } from "@react-three/drei";
+
+const SOCIAL_ICONS = { github: Github, linkedin: Linkedin, facebook: Facebook };
 
 function Hero3DObject() {
   const meshRef1 = React.useRef();
@@ -354,15 +357,16 @@ export function Hero({ lang, tr }) {
               transition: "all 0.6s ease 0.7s",
             }}
           >
-            {[
-              { Icon: Github, label: "GitHub", href: "#" },
-              { Icon: Linkedin, label: "LinkedIn", href: "#" },
-              { Icon: Twitter, label: "Twitter", href: "#" },
-              { Icon: Youtube, label: "YouTube", href: "#" },
-            ].map(({ Icon, label, href }) => (
+            {socialLinks.map(({ name, icon, url }) => {
+              const Icon = SOCIAL_ICONS[icon];
+              return (
               <a
-                key={label}
-                href={href}
+                key={name}
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={name}
+                title={name}
                 style={{
                   width: "40px",
                   height: "40px",
@@ -395,7 +399,8 @@ export function Hero({ lang, tr }) {
               >
                 <Icon size={18} />
               </a>
-            ))}
+              );
+            })}
           </div>
         </div>
 
