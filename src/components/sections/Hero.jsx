@@ -235,7 +235,7 @@ export function Hero({ lang, tr }) {
           >
             <span
               style={{
-                fontFamily: "'Syne', sans-serif",
+                fontFamily: "'Be Vietnam Pro', sans-serif",
                 fontSize: "clamp(1.2rem, 3vw, 1.8rem)",
                 fontWeight: 700,
                 background:

@@ -1,11 +1,19 @@
 import React from "react";
+import { createPortal } from "react-dom";
 import resumePdf from "../../assets/resume/resume.pdf";
+import { useModalOverlay } from "../../hooks/useModalOverlay";
 
 export function PdfViewerModal({ isOpen, onClose, pdfUrl, title, tr }) {
+  useModalOverlay(isOpen, onClose);
+
   if (!isOpen) return null;
 
-  return (
+  // portal ra body: phải nằm ngoài #app-shell (đang bị inert) mới tương tác được
+  return createPortal(
     <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={title || tr.about.cvTitle}
       style={{
         position: "fixed",
         inset: 0,
@@ -111,7 +119,7 @@ export function PdfViewerModal({ isOpen, onClose, pdfUrl, title, tr }) {
           />
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
-

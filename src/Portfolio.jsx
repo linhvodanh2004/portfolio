@@ -39,6 +39,7 @@ export default function Portfolio() {
 
   return (
     <div
+      id="app-shell"
       style={{
         background: "var(--bg-primary)",
         color: "var(--text-primary)",
@@ -78,7 +79,6 @@ export default function Portfolio() {
           --modal-bg: rgba(255, 255, 255, 0.95);
         }
 
-        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         ::-webkit-scrollbar { width: 6px; }

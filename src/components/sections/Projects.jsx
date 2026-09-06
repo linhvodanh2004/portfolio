@@ -103,7 +103,7 @@ export function Projects({ lang, tr }) {
  * Bìa dự án: ưu tiên ảnh chụp màn hình thật; dự án chưa có ảnh thì rơi về
  * bìa sinh từ code (gradient theo accent + monogram + icon stack chính).
  */
-function ProjectCover({ proj, hovered, tr, onPreview }) {
+function ProjectCover({ proj, hovered, lang, tr, onPreview }) {
   const iconNames = proj.stack
     .filter((s) => s.icon)
     .map((s) => s.icon)
@@ -122,7 +122,7 @@ function ProjectCover({ proj, hovered, tr, onPreview }) {
       {proj.image ? (
         <img
           src={proj.image}
-          alt={proj.title}
+          alt={proj.title[lang]}
           loading="lazy"
           style={{
             width: "100%",
@@ -336,13 +336,14 @@ function ProjectCard({ proj, lang, tr }) {
       <ProjectCover
         proj={proj}
         hovered={hovered}
+        lang={lang}
         tr={tr}
         onPreview={() => setPreviewing(true)}
       />
       <ImageLightbox
         isOpen={previewing}
         src={proj.image}
-        alt={proj.title}
+        alt={proj.title[lang]}
         onClose={() => setPreviewing(false)}
       />
 
@@ -364,7 +365,7 @@ function ProjectCard({ proj, lang, tr }) {
               lineHeight: 1.35,
             }}
           >
-            {proj.title}
+            {proj.title[lang]}
           </h3>
 
           <div

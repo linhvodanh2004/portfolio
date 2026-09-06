@@ -1,26 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { createPortal } from "react-dom";
 import { X } from "lucide-react";
+import { useModalOverlay } from "../../hooks/useModalOverlay";
 
-/** Xem ảnh dự án ở kích thước đầy đủ. Đóng bằng Esc hoặc click nền. */
+/** Xem ảnh dự án ở kích thước đầy đủ. Đóng bằng Esc, click nền hoặc nút X. */
 export function ImageLightbox({ isOpen, src, alt, onClose }) {
-  useEffect(() => {
-    if (!isOpen) return;
-    const onKey = (e) => {
-      if (e.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", onKey);
-    // khoá cuộn nền khi modal mở
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      window.removeEventListener("keydown", onKey);
-      document.body.style.overflow = prev;
-    };
-  }, [isOpen, onClose]);
+  useModalOverlay(isOpen, onClose);
 
   if (!isOpen) return null;
 
-  return (
+  // portal ra body: phải nằm ngoài #app-shell (đang bị inert) mới bấm được
+  return createPortal(
     <div
       role="dialog"
       aria-modal="true"
@@ -29,7 +19,7 @@ export function ImageLightbox({ isOpen, src, alt, onClose }) {
       style={{
         position: "fixed",
         inset: 0,
-        zIndex: 2000,
+        zIndex: 9999,
         background: "rgba(5,5,15,0.92)",
         backdropFilter: "blur(8px)",
         display: "flex",
@@ -96,6 +86,7 @@ export function ImageLightbox({ isOpen, src, alt, onClose }) {
           {alt}
         </figcaption>
       </figure>
-    </div>
+    </div>,
+    document.body
   );
 }
